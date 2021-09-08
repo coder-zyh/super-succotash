@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "开始编译ts..."
+npx vue-tsc --noEmit --skipLibCheck
+echo "编译完成,开始检查书写规范"
+npx lint-staged
