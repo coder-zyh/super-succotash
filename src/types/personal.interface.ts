@@ -27,7 +27,7 @@ export interface PersonalBase {
 	 * 脱敏电话
 	 */
 	mobileNo: string;
-	desenphone: string
+	desenphone: string;
 	/**
 	 * 身份证号码
 	 */

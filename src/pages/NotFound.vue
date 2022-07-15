@@ -1,13 +1,6 @@
 <template>
 	<div
-		class="
-			page
-			full
-			not-found
-			flex-column
-			justify-content-center
-			align-items-center
-		"
+		class="page full not-found flex-column justify-content-center align-items-center"
 	>
 		<van-empty class="flex-auto" description="很遗憾，页面未找到"></van-empty>
 		<van-button
@@ -21,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent } from "vue";
 
 export default defineComponent({
 	name: "NotFound",

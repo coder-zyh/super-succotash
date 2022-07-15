@@ -23,12 +23,7 @@
 				</div>
 			</van-circle>
 			<div
-				class="
-					home-top__content
-					flex-row
-					justify-content-around
-					align-items-center
-				"
+				class="home-top__content flex-row justify-content-around align-items-center"
 			>
 				<div class="home-top__content_item">
 					<div class="home-top__content_item-title">风险案件总数</div>

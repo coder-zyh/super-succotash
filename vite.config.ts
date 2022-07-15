@@ -1,10 +1,10 @@
 import { ConfigEnv, UserConfigExport } from "vite";
 import vue from "@vitejs/plugin-vue";
-import styleImport from "vite-plugin-style-import";
 import path from "path";
 import { version } from "./package.json";
 import pxToViewPort from "postcss-px-to-viewport";
-import { viteMockServe } from "vite-plugin-mock";
+import Components from "unplugin-vue-components/vite";
+import { VantResolver } from "unplugin-vue-components/resolvers";
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
@@ -22,20 +22,9 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 		},
 		plugins: [
 			vue(),
-			styleImport({
-				libs: [
-					{
-						libraryName: "vant",
-						esModule: true,
-						resolveStyle: (name) => `vant/es/${name}/style`,
-					},
-				],
-			}),
-			viteMockServe({
-				mockPath: "src/api/mock",
-				supportTs: true,
-				localEnabled: command === "serve",
-				prodEnabled: false,
+			Components({
+				dts: true,
+				resolvers: [VantResolver()],
 			}),
 		],
 		resolve: {

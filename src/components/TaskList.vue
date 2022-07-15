@@ -49,13 +49,13 @@
 						拨打电话
 					</span>
 					<span
-						v-show="index !== indexLoading"
+						v-show="index.toString() !== indexLoading"
 						@click="unLocationClick(item, index)"
 					>
 						<van-icon name="location-o" />
 						导航地址
 					</span>
-					<span v-show="index === indexLoading">
+					<span v-show="index.toString() === indexLoading">
 						<van-loading size="22px">加载中...</van-loading>
 					</span>
 				</div>
@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, ref } from "@vue/runtime-core";
+import { defineComponent, PropType, reactive, ref } from "vue";
 import { RequestParams } from "@gopowerteam/http-request";
 import { WxSDKService } from "@/utils/wxSDK";
 import { getLocationLocationInfo } from "@/utils/wxSDK";

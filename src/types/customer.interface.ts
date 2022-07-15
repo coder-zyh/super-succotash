@@ -15,7 +15,7 @@ export interface CustomerBase {
 	 * 脱敏电话
 	 */
 	phone: string;
-	desenphone: string
+	desenphone: string;
 	/**
 	 * 电话状态
 	 */

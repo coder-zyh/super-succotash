@@ -126,9 +126,9 @@ export class WxSDKService {
 					success: ({ errMsg, localData }) => {
 						errMsg && okRegx.test(errMsg)
 							? subscriber.next({
-								localId,
-								data: localData,
-							})
+									localId,
+									data: localData,
+							  })
 							: subscriber.error(errMsg);
 
 						subscriber.complete();
@@ -157,9 +157,9 @@ export class WxSDKService {
 				success: ({ errMsg, serverId }) => {
 					errMsg && okRegx.test(errMsg)
 						? subscriber.next({
-							localId,
-							serverId,
-						})
+								localId,
+								serverId,
+						  })
 						: subscriber.error(errMsg);
 					subscriber.complete();
 				},
@@ -274,10 +274,10 @@ export class WxSDKService {
 					setTimeout(() => {
 						wx.startRecord({
 							fail: ({ errMsg }) => {
-								reject(errMsg)
+								reject(errMsg);
 							},
 						});
-					}, 1)
+					}, 1);
 					resolve(
 						setTimeout(() => {
 							wx.stopRecord({
@@ -294,7 +294,7 @@ export class WxSDKService {
 								},
 							});
 						}, 55000)
-					)
+					);
 				});
 			};
 			start();

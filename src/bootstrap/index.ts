@@ -1,4 +1,4 @@
-import { App } from "@vue/runtime-core";
+import { App } from "vue";
 import vantLib from "./vant-lib";
 import zwComponents from "./zw-components";
 import httpBoot from "./http.boot";
@@ -19,7 +19,7 @@ export const boot = (app: App) => {
 	httpBoot();
 
 	// if (!import.meta.env.DEV) {
-	authBoot();
+	// authBoot();
 	// }
 
 	// 启用vConsole

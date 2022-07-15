@@ -9,7 +9,7 @@
 			<van-tabbar-item replace to="/risk" icon="tosend">
 				风险任务
 			</van-tabbar-item>
-			<!-- <van-tabbar-item replace to="/my" icon="user-o">我的</van-tabbar-item> -->
+			<van-tabbar-item replace to="/my" icon="user-o">我的</van-tabbar-item>
 		</van-tabbar>
 	</div>
 </template>

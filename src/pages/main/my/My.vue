@@ -12,11 +12,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
-import { Toast } from "vant";
+import { defineComponent } from "vue";
 import headpor from "@/assets/imgs/headpor.png";
 export default defineComponent({
-	name: "My",
+	name: "MyPage",
 	setup() {
 		const realName = window.sessionStorage.getItem("realName");
 		return {

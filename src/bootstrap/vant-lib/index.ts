@@ -1,6 +1,3 @@
-import "vant/lib/index.css";
-import "@vant/touch-emulator";
-
 import {
 	ShareSheet,
 	Cell,

@@ -5,8 +5,8 @@
 			type="risk"
 			department-type="RISK"
 			:collection-status="collectionStatus"
-			:showState="showState"
-			:taskState="taskState"
+			:show-state="showState"
+			:task-state="taskState"
 		/>
 		<div class="page_content task-risk_content">
 			<div class="page-top_content task-risk_content-top">
@@ -22,8 +22,8 @@
 					:show-state="showState"
 					:loading="loading"
 					:finished="finished"
-					@taskPage="goPage"
-					@onLoad="onLoad"
+					@task-page="goPage"
+					@on-load="onLoad"
 				/>
 				<van-loading v-if="taskLoading" size="30px">加载中...</van-loading>
 			</div>
@@ -41,7 +41,7 @@ import { AppService } from "@/api/services/app.service";
 import { RequestParams } from "@gopowerteam/http-request";
 import { useDict } from "@/utils/hook.service";
 export default defineComponent({
-	name: "Risk",
+	name: "TaskRisk",
 	components: {
 		TaskNavBar: TaskNavBar,
 		TaskList,

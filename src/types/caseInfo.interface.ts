@@ -11,8 +11,8 @@ export interface CaseInfoBase {
 	 */
 	caseNumber: string;
 	/**
- * 签约合同号
- */
+	 * 签约合同号
+	 */
 	loanDealNo: string;
 	/**
 	 * 五级分类

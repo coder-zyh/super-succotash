@@ -17,15 +17,9 @@ export default function () {
 	let errorNotifyFlag = false;
 	let timeOver = 0;
 
-	// 判断dev 模式下是否开启mock
-	let serviceUrl = import.meta.env.VITE_APP_SERVE;
-	if (import.meta.env.DEV && import.meta.env.VITE_APP_MOCK === "true") {
-		serviceUrl = "";
-	}
-
 	// 配置服务端信息
 	RequestService.setConfig({
-		server: serviceUrl,
+		gateway: import.meta.env.VITE_APP_SERVE,
 		timeout: Number.parseInt(import.meta.env.VITE_APP_TIMEOUT),
 	});
 

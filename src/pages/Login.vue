@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent } from "vue";
 
 export default defineComponent({
-	name: "Login",
+	name: "LoginPage",
 	mounted() {
 		setTimeout(() => {
 			this.$router.replace({ name: "home" });

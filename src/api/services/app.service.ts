@@ -115,8 +115,7 @@ export class AppService {
 	 * 抵质押物地址信息
 	 */
 	@Request({
-		server: AppController.getGuaranteeAddress
-		,
+		server: AppController.getGuaranteeAddress,
 	})
 	public getGuaranteeAddress(requestParams: RequestParams): Observable<any> {
 		return requestParams.request();
@@ -190,8 +189,8 @@ export class AppService {
 		return requestParams.request();
 	}
 	/**
- * 通过文件名获取文件流
- */
+	 * 通过文件名获取文件流
+	 */
 	@Request({
 		server: AppController.getFileUrl,
 	})

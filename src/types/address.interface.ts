@@ -41,5 +41,5 @@ export interface AddressBase {
 	/**
 	 * 创建时间
 	 */
-	createTime: string
+	createTime: string;
 }

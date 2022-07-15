@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, defineEmit } from "vue";
+import { computed, defineComponent } from "vue";
 import { NavBar } from "vant";
 import { useRoute, useRouter } from "vue-router";
 

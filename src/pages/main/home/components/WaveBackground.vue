@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { onMounted, defineComponent } from "@vue/runtime-core";
+import { onMounted, defineComponent } from "vue";
 
 import anime from "animejs/lib/anime.es.js";
 export default defineComponent({

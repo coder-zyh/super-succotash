@@ -129,9 +129,9 @@ export const AppController = {
 		type: RequestMethod.Post,
 	},
 	/**
- * 基本信息
- * 抵质押物地址信息
- */
+	 * 基本信息
+	 * 抵质押物地址信息
+	 */
 	getGuaranteeAddress: {
 		service,
 		controller,
