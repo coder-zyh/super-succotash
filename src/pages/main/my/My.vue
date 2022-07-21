@@ -1,5 +1,6 @@
 <template>
 	<div class="page my">
+		<head-top>我的</head-top>
 		<div class="my_content">
 			<div class="my_content-img">
 				<van-image round width="6rem" height="6rem" :src="headpor" />
@@ -14,8 +15,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import headpor from "@/assets/imgs/headpor.png";
+import HeadTop from "@/components/HeadTop.vue";
 export default defineComponent({
 	name: "MyPage",
+	// eslint-disable-next-line vue/no-unused-components
+	components: { HeadTop },
 	setup() {
 		const realName = window.sessionStorage.getItem("realName");
 		return {

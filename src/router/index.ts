@@ -1,32 +1,50 @@
+import { KeepAlive } from "vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
 	{
 		path: "/",
 		component: () => import("@/pages/index/Index.vue"),
-		redirect: "/home",
+		redirect: "/report",
 		children: [
 			{
-				path: "home",
-				name: "home",
-				component: () => import("@/pages/main/home/Home.vue"),
+				path: "report",
+				name: "report",
+				component: () => import("@/pages/main/report/report.vue"),
 				meta: {
-					title: "首页",
+					title: "报工",
+					KeepAlive: true,
 				},
 			},
 			{
-				path: "overdue",
-				name: "overdue",
-				component: () => import("@/pages/main/task-overdue/TaskOverdue.vue"),
+				path: "fee",
+				name: "fee",
+				component: () => import("@/pages/main/fee/Fee.vue"),
 				meta: {
-					title: "逾期任务",
+					title: "报销",
 				},
 			},
 			{
-				path: "risk",
-				name: "risk",
-				component: () => import("@/pages/main/task-risk/TaskRisk.vue"),
+				path: "fill",
+				name: "fill",
+				component: () => import("@/pages/main/fee/FeeFill.vue"),
 				meta: {
-					title: "风险任务",
+					title: "报销",
+				},
+			},
+			{
+				path: "approval",
+				name: "approval",
+				component: () => import("@/pages/main/approval/Approval.vue"),
+				meta: {
+					title: "审批",
+				},
+			},
+			{
+				path: "project",
+				name: "project",
+				component: () => import("@/pages/main/project/Project.vue"),
+				meta: {
+					title: "项目",
 				},
 			},
 			{
