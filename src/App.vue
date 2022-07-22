@@ -8,23 +8,24 @@
 </template>
 
 <script lang="ts">
-import { RequestParams } from "@gopowerteam/http-request";
+import { Notify, Toast } from "vant";
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
 import { AppService } from "./api/services/app.service";
 import { RootMutationType } from "./types/mutation.type";
+import { UserInfo } from "./types/user.interface";
+
 export default defineComponent({
 	name: "App",
 	computed: mapState(["ready"]),
-	watch: {
-		ready: function (value: boolean) {
-			if (!value) return;
-			new AppService().getAll(new RequestParams()).subscribe({
-				next: (value: any) => {
-					this.$store.commit(RootMutationType.SET_DICTDATA, value);
-				},
-			});
-		},
+	created() {
+		new AppService().login<UserInfo>("zzl12826c", "888888").subscribe({
+			next: (data) => {
+				this.$store.commit(RootMutationType.SET_READY, true);
+				this.$store.commit(RootMutationType.UPDATE_USER, data);
+			},
+			error: (err) => Toast({ message: err, type: "fail" }),
+		});
 	},
 });
 </script>

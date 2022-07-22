@@ -25,3 +25,19 @@ export interface FeeItem {
 	/** 所属项目 */
 	projectId: string;
 }
+
+/** Myte项目信息 */
+export interface MyteProjectInfo {
+	/** 项目ID */
+	id: string;
+	/** Myte Code */
+	code: string;
+	/** 项目名称 */
+	name: string;
+	/**
+	 * 是否公共项目
+	 * @value N 否
+	 * @value Y 是
+	 */
+	ispublic: "N" | "Y";
+}

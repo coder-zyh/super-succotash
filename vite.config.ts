@@ -32,5 +32,14 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 				"@": path.resolve(__dirname, "src"),
 			},
 		},
+		server: {
+			proxy: {
+				"/server": {
+					target: "http://192.168.3.101:8080",
+					changeOrigin: true,
+					rewrite: (path) => path.replace(/^\/server/, ""),
+				},
+			},
+		},
 	};
 };
