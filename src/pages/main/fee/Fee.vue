@@ -16,12 +16,12 @@
 		</van-button>
 	</div>
 </template>
-<script>
+<script lang="ts">
 import HeadTop from "@/components/HeadTop.vue";
 import FeeItem from "./children/FeeItem.vue";
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
 	name: "Fee",
 	components: { HeadTop, FeeItem },
 	setup() {
@@ -58,20 +58,25 @@ export default {
 					// }
 				);
 				// 数据全部加载完成
-				if (list.value.length >= 40) {
+				if (feeList.value.length >= 40) {
 					finished.value = true;
 				}
 			}, 2000);
 		};
+		const refreshing = ref(false);
 		return {
 			feeList,
+			refreshing,
 			getData,
 			loading,
 			finished,
 			onLoad,
+			onRefresh: () => {
+				//
+			},
 		};
 	},
-};
+});
 </script>
 <style scoped>
 .btn {

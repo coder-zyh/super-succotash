@@ -55,13 +55,13 @@
 		</van-cell-group>
 	</div>
 </template>
-<script>
+<script lang="ts">
 import HeadTop from "@/components/HeadTop.vue";
 import { useRouter } from "vue-router";
 
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
 	components: {
 		HeadTop,
 	},
@@ -136,7 +136,7 @@ export default {
 			money,
 		};
 	},
-};
+});
 </script>
 <style scoped>
 .fill span {

@@ -3,11 +3,12 @@
 		<head-top>项目</head-top>
 	</div>
 </template>
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import HeadTop from "@/components/HeadTop.vue";
 
-export default {
+export default defineComponent({
 	name: "Project",
 	components: { HeadTop },
-};
+});
 </script>

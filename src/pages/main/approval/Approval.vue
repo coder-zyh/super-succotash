@@ -8,11 +8,17 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import HeadTop from "@/components/HeadTop.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
 	name: "Approval",
 	components: { HeadTop },
-};
+	data() {
+		return {
+			active: "",
+		};
+	},
+});
 </script>

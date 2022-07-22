@@ -1,4 +1,3 @@
-import { KeepAlive } from "vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -9,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
 			{
 				path: "report",
 				name: "report",
-				component: () => import("@/pages/main/report/report.vue"),
+				component: () => import("@/pages/main/report/Report.vue"),
 				meta: {
 					title: "报工",
 					KeepAlive: true,

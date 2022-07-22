@@ -23,7 +23,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 		plugins: [
 			vue(),
 			Components({
-				dts: true,
+				dts: false,
 				resolvers: [VantResolver()],
 			}),
 		],

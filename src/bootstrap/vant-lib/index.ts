@@ -1,3 +1,5 @@
+import "vant/lib/index.css";
+
 import {
 	ShareSheet,
 	Cell,
@@ -12,11 +14,8 @@ import {
 	Image,
 	Form,
 	Field,
-	Uploader,
 	Popup,
 	Picker,
-	Step,
-	Steps,
 	Divider,
 	Icon,
 	Tabs,
@@ -50,11 +49,8 @@ const vantLib = {
 		Vue.component(Image.name, Image);
 		Vue.component(Form.name, Form);
 		Vue.component(Field.name, Field);
-		Vue.component(Uploader.name, Uploader);
 		Vue.component(Popup.name, Popup);
 		Vue.component(Picker.name, Picker);
-		Vue.component(Step.name, Step);
-		Vue.component(Steps.name, Steps);
 		Vue.component(Divider.name, Divider);
 		Vue.component(Icon.name, Icon);
 		Vue.component(Tabs.name, Tabs);
