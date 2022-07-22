@@ -1,8 +1,11 @@
 <template>
 	<div class="page index">
-		<keep-alive>
-			<router-view />
-		</keep-alive>
+		<transition>
+			<keep-alive>
+				<router-view />
+			</keep-alive>
+		</transition>
+
 		<van-tabbar route>
 			<van-tabbar-item replace to="/report" icon="home-o">报工</van-tabbar-item>
 			<van-tabbar-item replace to="/fee" icon="failure">报销</van-tabbar-item>

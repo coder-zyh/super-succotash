@@ -1,13 +1,12 @@
 <template>
 	<div class="project">
 		<head-top>项目</head-top>
+		<project-item v-model:title="name"></project-item>
 	</div>
 </template>
-<script>
+<script setup>
 import HeadTop from "@/components/HeadTop.vue";
-
-export default {
-	name: "Project",
-	components: { HeadTop },
-};
+import { ref } from "vue";
+import ProjectItem from "./children/ProjectItem.vue";
+const name = ref("zyh");
 </script>

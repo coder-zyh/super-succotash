@@ -47,14 +47,12 @@ export default {
 	},
 	computed: {
 		// eslint-disable-next-line vue/no-dupe-keys
-		sumTimes() {
+		sumTimes(v) {
 			let time = 0;
 			this.projectss.forEach((item) => {
 				time += Number(item.time);
 			});
-			// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-			this.sumTimes = time;
-			return time;
+			return v + time;
 		},
 	},
 	created() {

@@ -30,7 +30,7 @@
 import { ref, watch } from "vue";
 export default {
 	props: {
-		index: String,
+		index: Number,
 	},
 	emits: ["chooseProject"],
 	setup(props, context) {
