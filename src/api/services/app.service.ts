@@ -1,9 +1,8 @@
-import axios from "axios";
-import { Observable } from "rxjs";
+import { ExpenseTypeInfo, MyteProjectInfo } from "@/types/project.interface";
+import { UserInfo } from "@/types/user.interface";
+import NetService from "@/utils/net.service";
+import { filter, map } from "rxjs/operators";
 import { AppController } from "../controllers/app.controller";
-
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = import.meta.env.VITE_APP_SERVE;
 
 export class AppService {
 	/**
@@ -12,47 +11,51 @@ export class AppService {
 	 * @param pwd
 	 * @returns
 	 */
-	public login<T = any>(uname: string, pwd: string) {
-		const config = AppController.login;
+	public login(uname: string, pwd: string) {
 		const form = new FormData();
 		form.append("username", uname);
 		form.append("password", pwd);
 
-		return new Observable((observer) => {
-			axios
-				.post<HttpResonseType<T>>(config.path, form, { withCredentials: true })
-				.then((res) => {
-					if (res.status !== 200) {
-						return observer.error(res.statusText);
-					}
-					console.log(res.headers);
-					if (res.data.success) {
-						observer.next(res.data.obj);
-					} else {
-						observer.error(res.data.msg);
-					}
-				})
-				.catch(() => {
-					observer.error("登录失败，请稍后重试");
-				});
-		});
+		return NetService.request<HttpResonseType<any>>(
+			AppController.login,
+			form
+		).pipe(
+			filter((v) => {
+				if (v.success) return true;
+				else throw v.msg;
+			}),
+			map<HttpResonseType<any>, UserInfo>((v) => v.obj)
+		);
 	}
 
 	/** 获取项目列表 */
 	public getProjectList() {
-		const config = AppController.getProjectList;
-		return new Observable((observer) => {
-			axios
-				.get(config.path)
-				.then((res) => {
-					if (res.status !== 200) {
-						return observer.error(res.statusText);
-					}
-					observer.next(res.data);
-				})
-				.catch(() => {
-					observer.error("登录失败，请稍后重试");
-				});
-		});
+		return NetService.request<MyteProjectInfo[]>(AppController.getProjectList);
+	}
+
+	/** 获取费用类型 */
+	public getExpenseType() {
+		return NetService.request<HttpQueryResponse<any>>(
+			AppController.expensetype
+		).pipe(
+			filter((v) => {
+				if (v.success) return true;
+				else throw v.msg;
+			}),
+			map<HttpQueryResponse<any>, ExpenseTypeInfo[]>((v) => v.rows)
+		);
+	}
+
+	/** 保存日报信息 */
+	public saveDayReport(data: any) {
+		return NetService.request<HttpResonseType<null>>(
+			AppController.saveDayReport,
+			data
+		).pipe(
+			filter((v) => {
+				if (v.success) return true;
+				else throw v.msg;
+			})
+		);
 	}
 }

@@ -8,18 +8,17 @@
 </template>
 
 <script lang="ts">
-import { Notify, Toast } from "vant";
+import { Toast } from "vant";
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
 import { AppService } from "./api/services/app.service";
 import { RootMutationType } from "./types/mutation.type";
-import { UserInfo } from "./types/user.interface";
 
 export default defineComponent({
 	name: "App",
 	computed: mapState(["ready"]),
 	created() {
-		new AppService().login<UserInfo>("zzl12826c", "888888").subscribe({
+		new AppService().login("zzl12826c", "888888").subscribe({
 			next: (data) => {
 				this.$store.commit(RootMutationType.SET_READY, true);
 				this.$store.commit(RootMutationType.UPDATE_USER, data);

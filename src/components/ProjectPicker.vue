@@ -10,23 +10,33 @@
 
 <script lang="ts" setup>
 import { AppService } from "@/api/services/app.service";
-import { ref } from "vue";
+import { MyteProjectInfo } from "@/types/project.interface";
+import { computed, ref } from "vue";
 
-const columns = ref([]);
+// const columns = ref([]);
+
+const resource = ref<MyteProjectInfo[]>([]);
+
+const columns = computed(() =>
+	resource.value.map((x) => ({ text: `${x.code}-${x.name}`, value: x.id }))
+);
 
 new AppService().getProjectList().subscribe({
 	next: (data: any[]) => {
-		columns.value = data.map((x) => ({
-			text: `${x.code}-${x.name}`,
-			value: x.id,
-		}));
+		resource.value = data;
 	},
 });
 
 const emits = defineEmits(["cancel", "confirm"]);
 const onCancel = () => emits("cancel");
 
-const onConfirm = (param: PickerResult) => emits("confirm", param);
+const onConfirm = (param: PickerResult) => {
+	const item = resource.value.find((x) => x.id === param.value);
+	emits("confirm", {
+		text: item.name,
+		value: item.id,
+	});
+};
 </script>
 
 <style lang="less" scoped></style>

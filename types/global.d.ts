@@ -7,7 +7,7 @@ type PickerResult = {
 };
 
 /**
- * 网络请求结构体
+ * 网络响应普通结构体
  */
 type HttpResonseType<T> = {
 	/** 错误消息 */
@@ -16,4 +16,14 @@ type HttpResonseType<T> = {
 	obj: T;
 	/** 业务处理状态 */
 	success: boolean;
+};
+
+/**
+ * 网络查询响应结构
+ */
+type HttpQueryResponse<T> = {
+	total: number;
+	rows: T[];
+	success: boolean;
+	msg: string;
 };

@@ -41,3 +41,15 @@ export interface MyteProjectInfo {
 	 */
 	ispublic: "N" | "Y";
 }
+
+/** 费用类型 */
+export interface ExpenseTypeInfo {
+	/** ID */
+	id: string;
+	/** 状态 */
+	status: string;
+	/** 费用说明 */
+	comment: string;
+	/** 费用名称 */
+	name: string;
+}

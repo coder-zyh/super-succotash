@@ -20,7 +20,6 @@
 		color="#1989fa"
 		:max-date="today"
 		:min-date="lastMonth"
-		:formatter="formatter"
 		@confirm="onConfirm"
 	></van-calendar>
 </template>
@@ -68,7 +67,7 @@ export default defineComponent({
 			show,
 			onConfirm,
 			rightClick: () => ctx.emit("append"),
-			formatter,
+			// formatter,
 		};
 	},
 });

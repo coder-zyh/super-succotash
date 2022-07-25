@@ -34,11 +34,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 		},
 		server: {
 			proxy: {
-				"/server": {
-					target: "http://192.168.3.101:8080",
-					changeOrigin: true,
-					rewrite: (path) => path.replace(/^\/server/, ""),
-				},
+				"/myte_api": "http://192.168.3.101:8888",
 			},
 		},
 	};
