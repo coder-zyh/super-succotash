@@ -50,10 +50,10 @@
 		</van-cell-group>
 	</div>
 </template>
-<script>
-import { ref } from "vue";
+<script lang="ts">
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
 	// eslint-disable-next-line vue/require-prop-types
 	props: {
 		index: Number,
@@ -114,7 +114,7 @@ export default {
 			maxDate: new Date(2025, 11, 30),
 		};
 	},
-};
+});
 </script>
 <style scoped>
 .item {

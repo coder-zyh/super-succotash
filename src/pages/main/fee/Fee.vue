@@ -1,6 +1,6 @@
 <template>
 	<div class="fee">
-		<head-top>报销</head-top>
+		<van-nav-bar title="报销" fixed placeholder z-index="9" />
 		<van-pull-refresh
 			v-model="refreshing"
 			success-text="刷新成功"
@@ -23,14 +23,13 @@
 		</van-button>
 	</div>
 </template>
-<script>
-import HeadTop from "@/components/HeadTop.vue";
+<script lang="ts">
 import FeeItem from "./children/FeeItem.vue";
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
 	name: "Fee",
-	components: { HeadTop, FeeItem },
+	components: { FeeItem },
 	setup() {
 		// 数据
 		const feeList = ref([]);
@@ -110,18 +109,18 @@ export default {
 		};
 		return {
 			feeList,
+			refreshing,
 			getData,
 			loading,
 			finished,
 			onLoad,
-			refreshing,
 			onRefresh,
 		};
 	},
 	created() {
 		this.onLoad(this.pageIndex);
 	},
-};
+});
 </script>
 <style scoped>
 .btn {

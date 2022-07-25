@@ -1,10 +1,15 @@
 <template>
-	<div class="fill">
-		<head-top>
-			<template #left><span @click="cancel">取消</span></template>
-			报销填报
-			<template #right><span @click="save">提交</span></template>
-		</head-top>
+	<div class="feeFill">
+		<van-nav-bar
+			title="报销填报"
+			fixed
+			placeholder
+			z-index="9"
+			left-arrow
+			left-text="取消"
+			@click-left="cancel"
+			@click-right="save"
+		/>
 		<fill-item
 			v-for="(item, index) in list"
 			:key="index"
@@ -17,16 +22,14 @@
 		</div>
 	</div>
 </template>
-<script>
-import HeadTop from "@/components/HeadTop.vue";
+<script lang="ts">
 import FillItem from "./children/FillItem.vue";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, defineComponent } from "vue";
 import { CreateFeeForm } from "@/utils/class.js";
 
-export default {
+export default defineComponent({
 	components: {
-		HeadTop,
 		FillItem,
 	},
 	setup() {
@@ -44,7 +47,7 @@ export default {
 			const fillForm = pushData();
 			console.log(fillForm);
 			// 发送post请求
-			postList(fillForm);
+			postList();
 			// 跳转至fee页面
 			router.replace("/fee");
 		};
@@ -90,13 +93,13 @@ export default {
 			pushData,
 		};
 	},
-};
+});
 </script>
 <style scoped>
-.fill {
+.feeFill {
 	min-height: 85vh;
 }
-.fill span {
+.feeFill span {
 	color: rgb(33, 33, 239);
 }
 .btn {

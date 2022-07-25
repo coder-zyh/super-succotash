@@ -1,6 +1,6 @@
 <template>
 	<div class="page my">
-		<head-top>我的</head-top>
+		<van-nav-bar title="我的" fixed placeholder z-index="9" />
 		<div class="my_content">
 			<div class="my_content-img">
 				<van-image round width="6rem" height="6rem" :src="headpor" />

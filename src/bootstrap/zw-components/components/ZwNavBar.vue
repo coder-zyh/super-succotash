@@ -34,25 +34,10 @@ export default defineComponent({
 		return {
 			showLeft,
 			title: meta.title || "",
-			back,
+			back: props.hiddenLeft ? undefined : back,
 		};
 	},
 });
 </script>
 
-<style lang="less" scoped>
-.zw-nav-bar {
-	background-color: #0062ad;
-}
-:deep(.van-icon) {
-	color: #fefefe;
-}
-:deep(.van-nav-bar__title) {
-	color: #fefefe;
-}
-:deep(.van-nav-bar__right) {
-	.van-nav-bar__text {
-		color: #fefefe;
-	}
-}
-</style>
+<style lang="less" scoped></style>

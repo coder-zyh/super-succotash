@@ -24,7 +24,7 @@
 		"vant": "^3.0.18",
 		"vconsole": "^3.8.1",
 		"vue": "^3.0.5",
-		"vue-router": "4",
+		"vue-router": "^4.1.2",
 		"vuex": "^4.0.1"
 	},
 	"devDependencies": {

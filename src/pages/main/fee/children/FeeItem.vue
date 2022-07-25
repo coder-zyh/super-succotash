@@ -9,15 +9,17 @@
 		</van-cell-group>
 	</div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
 	name: "FeeItem",
 	props: {
 		item: Object,
 	},
-};
+});
 </script>
-<style scoped>
+<style lang="less" scoped>
 .feeItem {
 	padding: 10px 0;
 }

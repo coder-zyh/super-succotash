@@ -1,17 +1,17 @@
 <template>
-	<div class="item">
-		<input :value="title" type="text" @change="update($event.target.value)" />
-	</div>
+	<div class="item"><input v-model="model" type="text" /></div>
 </template>
-<script setup>
+<script setup lang="ts">
+import { computed } from "vue";
+
 const props = defineProps({
 	title: String,
 });
 
 const emit = defineEmits(["update:title"]);
-
-const update = (value) => {
-	console.log(value);
-	emit("update:title", value);
-};
+const model = computed({
+	get: () => props.title,
+	set: (val) => emit("update:title", val),
+});
 </script>
+<style lang="less"></style>
