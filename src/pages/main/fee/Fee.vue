@@ -1,6 +1,6 @@
 <template>
-	<div class="fee">
-		<head-top>报销</head-top>
+	<div class="page_content fee">
+		<zw-nav-bar hidden-left title="报销"></zw-nav-bar>
 		<van-pull-refresh
 			v-model="refreshing"
 			success-text="刷新成功"
@@ -24,13 +24,12 @@
 	</div>
 </template>
 <script lang="ts">
-import HeadTop from "@/components/HeadTop.vue";
 import FeeItem from "./children/FeeItem.vue";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
 	name: "Fee",
-	components: { HeadTop, FeeItem },
+	components: { FeeItem },
 	setup() {
 		// 数据
 		const feeList = ref([]);

@@ -1,6 +1,6 @@
 <template>
-	<div class="page my">
-		<head-top>我的</head-top>
+	<div class="page_content my">
+		<zw-nav-bar hidden-left title="我的"></zw-nav-bar>
 		<div class="my_content">
 			<div class="my_content-img">
 				<van-image round width="6rem" height="6rem" :src="avatorImg" />
@@ -16,11 +16,9 @@
 import { defineComponent, computed } from "vue";
 import femaleHead from "@/assets/imgs/femalHead.png";
 import maleHead from "@/assets/imgs/maleHead.png";
-import HeadTop from "@/components/HeadTop.vue";
 import { useStore } from "@/store";
 export default defineComponent({
 	name: "MyPage",
-	components: { HeadTop },
 	setup() {
 		const store = useStore();
 		const realName = store.state.user.realName;

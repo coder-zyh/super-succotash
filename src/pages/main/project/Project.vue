@@ -1,6 +1,6 @@
 <template>
-	<div class="project">
-		<head-top>项目</head-top>
+	<div class="page_content project">
+		<zw-nav-bar hidden-left title="项目"></zw-nav-bar>
 	</div>
 </template>
 <script lang="ts">
@@ -9,6 +9,5 @@ import HeadTop from "@/components/HeadTop.vue";
 
 export default defineComponent({
 	name: "Project",
-	components: { HeadTop },
 });
 </script>
