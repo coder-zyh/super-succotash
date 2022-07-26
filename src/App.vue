@@ -8,11 +8,12 @@
 </template>
 
 <script lang="ts">
-import { Toast } from "vant";
+import { Notify, Toast } from "vant";
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
 import { AppService } from "./api/services/app.service";
 import { RootMutationType } from "./types/mutation.type";
+import { UserInfo } from "./types/user.interface";
 
 export default defineComponent({
 	name: "App",

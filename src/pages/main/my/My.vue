@@ -3,7 +3,7 @@
 		<head-top>我的</head-top>
 		<div class="my_content">
 			<div class="my_content-img">
-				<van-image round width="6rem" height="6rem" :src="headpor" />
+				<van-image round width="6rem" height="6rem" :src="avatorImg" />
 			</div>
 			<div class="my_content-name">
 				<span>您好，{{ realName }}</span>
@@ -13,18 +13,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import headpor from "@/assets/imgs/headpor.png";
+import { defineComponent, computed } from "vue";
+import femaleHead from "@/assets/imgs/femalHead.png";
+import maleHead from "@/assets/imgs/maleHead.png";
 import HeadTop from "@/components/HeadTop.vue";
+import { useStore } from "@/store";
 export default defineComponent({
 	name: "MyPage",
-	// eslint-disable-next-line vue/no-unused-components
 	components: { HeadTop },
 	setup() {
-		const realName = window.sessionStorage.getItem("realName");
+		const store = useStore();
+		const realName = store.state.user.realName;
+		const avatorImg = computed(() =>
+			store.state.user.gender === "1" ? maleHead : femaleHead
+		);
 		return {
 			realName,
-			headpor,
+			avatorImg,
 		};
 	},
 });

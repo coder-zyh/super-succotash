@@ -4,4 +4,5 @@ export interface UserInfo {
 	phone: string;
 	username: string;
 	email: string;
+	gender?: "0" | "1";
 }

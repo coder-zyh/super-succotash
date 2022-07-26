@@ -25,7 +25,8 @@
 		"vconsole": "^3.8.1",
 		"vue": "^3.0.5",
 		"vue-router": "^4.1.2",
-		"vuex": "^4.0.1"
+		"vuex": "^4.0.1",
+		"vuex-persistedstate": "^4.1.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.0.3",
