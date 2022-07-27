@@ -8,36 +8,26 @@
 		/>
 
 		<!-- 项目列表 -->
-		<van-form>
+		<div
+			v-for="(item, index) in projectList"
+			:key="item.id"
+			class="report_item"
+		>
 			<div
-				v-for="(item, index) in projectList"
-				:key="item.id"
-				class="report_item"
+				class="report_item__title flex justify-content-between align-items-center"
 			>
-				<div
-					class="report_item__title flex justify-content-between align-items-center"
-				>
-					<div>项目({{ index + 1 }})</div>
-					<div>
-						<van-button
-							v-if="index > 0"
-							size="mini"
-							type="primary"
-							plain
-							class="report_item__button"
-							@click="() => deleteProject(item.id)"
-						>
-							删除
-						</van-button>
-					</div>
-				</div>
-				<ReportItem
-					v-model:timeCount="item.timeCount"
-					v-bind="item"
-					@click="onProjectEvent"
+				<div>项目({{ index + 1 }})</div>
+				<delete-button
+					:hidden="index == 0"
+					@click="() => deleteProject(item.id)"
 				/>
 			</div>
-		</van-form>
+			<ReportItem
+				v-model:timeCount="item.timeCount"
+				v-bind="item"
+				@click="onProjectEvent"
+			/>
+		</div>
 
 		<!-- 展示总计 -->
 		<van-cell-group v-if="projectList.length > 1" title="合计">
@@ -74,6 +64,10 @@ import { useFilter } from "@/utils/hook.service";
 import ReportDate from "./components/ReportDate.vue";
 import ProjectPicker from "@/components/ProjectPicker.vue";
 import ReportFee from "./components/ReportFee.vue";
+import { Notify, Toast } from "vant";
+import DeleteButton from "./components/DeleteButton.vue";
+import { AppService } from "@/api/services/app.service";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
 	name: "Report",
@@ -82,6 +76,7 @@ export default defineComponent({
 		ReportItem,
 		ProjectPicker,
 		ReportFee,
+		DeleteButton,
 	},
 	setup() {
 		const filter = useFilter();
@@ -93,9 +88,9 @@ export default defineComponent({
 		const showFees = ref(false);
 
 		const projectList = ref<ProjectItem[]>([]);
-		const feeList = ref<FeeItem[]>([]);
 		const porjectId = ref("");
 		const feeRef = ref();
+		const router = useRouter();
 
 		// 添加新项目
 		const addItem = () => {
@@ -103,7 +98,7 @@ export default defineComponent({
 				id: Date.now().toString(),
 				code: "",
 				name: "",
-				timeCount: 0,
+				timeCount: 8,
 				date: selectDate.value,
 				totalAmount: null,
 			});
@@ -111,11 +106,6 @@ export default defineComponent({
 
 		// 默认添加一条
 		addItem();
-
-		// 最终保存
-		const submit = () => {
-			//
-		};
 
 		// 填报日期选择
 		const onDateChange = (dateStr: string) => {
@@ -166,6 +156,71 @@ export default defineComponent({
 		const totalAmount = computed(() =>
 			projectList.value.reduce((s, c) => s + (c.totalAmount || 0), 0)
 		);
+
+		// 最终保存
+		const submit = () => {
+			if (totalTimes.value < 8) {
+				return Notify({
+					message: "总时间不能小于8小时",
+				});
+			}
+			if (totalTimes.value > 24) {
+				return Notify({
+					message: "总时间不能超过24小时",
+				});
+			}
+
+			// check project list
+			const hasEmpty = projectList.value.some((x) => !x.code || !x.timeCount);
+			if (hasEmpty) {
+				return Notify({
+					message: "请完善填写填报信息",
+				});
+			}
+
+			// 组合数据
+			let feeList = [];
+			if (feeRef.value !== undefined) {
+				feeList = feeRef.value.dataSet;
+			}
+
+			const mobileCardList = projectList.value.map((project) => {
+				const item: any = {};
+				item.assignmentId = project.code;
+				item.day = project.timeCount;
+
+				const fees = feeList.filter((x) => x.id === project.id);
+				if (fees.length) {
+					item.mobileCardList = fees.map((fee) => {
+						return {
+							assignmentId: project.code,
+							fromDate: selectDate.value,
+							amount: fee.amount,
+							expensetypeid: fee.type,
+						};
+					});
+				}
+				return item;
+			});
+
+			const requestData = {
+				peroId: selectDate.value,
+				mobileCardList,
+			};
+			new AppService().saveDayReport(requestData).subscribe({
+				next: () => {
+					Toast({
+						message: "填报成功",
+						type: "success",
+						onClose: () => router.push("/"),
+					});
+				},
+				error: (err) =>
+					Notify({
+						message: err,
+					}),
+			});
+		};
 
 		return {
 			selectDate,

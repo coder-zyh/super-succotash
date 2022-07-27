@@ -15,14 +15,7 @@
 					class="report-fee_item__title flex justify-content-between align-items-center"
 				>
 					<div>预估费用 ({{ index + 1 }})</div>
-					<van-button
-						type="primary"
-						plain
-						size="mini"
-						@click="() => removeItem(item.id)"
-					>
-						删除
-					</van-button>
+					<delete-button @click="() => removeItem(item.id)" />
 				</div>
 				<van-field
 					label="费用类型"
@@ -61,92 +54,19 @@
 import { ref, computed, nextTick } from "vue";
 import { FeeItem } from "@/types/project.interface";
 import { Toast } from "vant";
+import { AppService } from "@/api/services/app.service";
+import DeleteButton from "./DeleteButton.vue";
 
-const typeList = [
-	{
-		id: 21,
-		name: "日常报销-业务招待",
-		comment: "业务招待产生的费用（含出差过程中发生的业务招待费）",
-		createdate: "2021/09/17 16:07:07",
-		createdby: "管理员",
-		updatedate: "2021/09/17 16:07:07",
-		updatedby: "管理员",
-		status: 1,
+const typeList = ref([]);
+
+new AppService().getExpenseType().subscribe({
+	next: (data) => {
+		typeList.value = data.map((x) => ({
+			text: x.name,
+			value: x.id,
+		}));
 	},
-	{
-		id: 22,
-		name: "日常报销-市内交通",
-		comment: "含加班打车及其他外出交通报销，不含差旅市内交通",
-		createdate: "2021/09/17 16:07:41",
-		createdby: "管理员",
-		updatedate: "2021/09/17 16:07:41",
-		updatedby: "管理员",
-		status: 1,
-	},
-	{
-		id: 23,
-		name: "日常报销-加班餐",
-		comment: "日常加班餐报销",
-		createdate: "2021/09/17 16:08:44",
-		createdby: "管理员",
-		updatedate: "2021/09/17 16:09:02",
-		updatedby: "管理员",
-		status: 1,
-	},
-	{
-		id: 24,
-		name: "日常报销-团建费",
-		comment: "一般仅指由项目经理或者直属领导申请并报销",
-		createdate: "2021/09/17 16:09:27",
-		createdby: "管理员",
-		updatedate: "2021/09/17 16:09:27",
-		updatedby: "管理员",
-		status: 1,
-	},
-	{
-		id: 25,
-		name: "日常报销-参会及培训费",
-		comment: "一般对公支付，特殊情况个人垫付产生的报销费用",
-		createdate: "2021/09/17 16:09:46",
-		createdby: "管理员",
-		updatedate: "2021/09/17 16:09:46",
-		updatedby: "管理员",
-		status: 1,
-	},
-	{
-		id: 26,
-		name: "日常报销-其他",
-		comment: "",
-		createdate: "2021/09/17 16:09:59",
-		createdby: "管理员",
-		updatedate: "2021/09/17 16:09:59",
-		updatedby: "管理员",
-		status: 1,
-	},
-	{
-		id: 32,
-		name: "付款申请",
-		comment: "",
-		createdate: "2021/09/17 16:12:03",
-		createdby: "管理员",
-		updatedate: "2021/09/17 16:12:03",
-		updatedby: "管理员",
-		status: 1,
-	},
-	{
-		id: 33,
-		name: "差旅报销",
-		comment: "包含住宿费、长途交通、市内交通、退票费托运费保险费",
-		createdate: "2021/09/18 16:07:30",
-		createdby: "管理员",
-		updatedate: "2021/09/18 16:09:20",
-		updatedby: "管理员",
-		status: 1,
-	},
-].map((x) => ({
-	text: x.name,
-	value: x.id,
-}));
+});
 
 const props = defineProps({
 	pid: {

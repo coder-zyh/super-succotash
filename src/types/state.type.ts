@@ -1,4 +1,5 @@
 import { DictData } from "@/types/dict.interface";
+import { UserInfo } from "@/types/user.interface";
 
 export type RootState = {
 	/**
@@ -9,4 +10,6 @@ export type RootState = {
 	 * 系统数据字典
 	 */
 	dict: DictData;
+
+	user: UserInfo;
 };

@@ -1,4 +1,5 @@
 import "vant/lib/index.css";
+import "./default.less";
 
 import {
 	ShareSheet,
@@ -29,6 +30,7 @@ import {
 	CollapseItem,
 	Dialog,
 	PullRefresh,
+	Notify,
 } from "vant";
 
 /**
@@ -64,6 +66,7 @@ const vantLib = {
 		Vue.component(CollapseItem.name, CollapseItem);
 		Vue.component(PullRefresh.name, PullRefresh);
 		Vue.component(Dialog.name, Dialog);
+		Vue.component(Notify.name, Notify);
 	},
 };
 export default vantLib;
