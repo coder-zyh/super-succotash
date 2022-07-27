@@ -1,11 +1,12 @@
 <template>
-	<div class="project">
-		<van-nav-bar title="项目" fixed placeholder z-index="9" />
-		<project-item v-model:title="name"></project-item>
+	<div class="page_content project">
+		<zw-nav-bar hidden-left title="项目"></zw-nav-bar>
 	</div>
 </template>
-<script setup lang="ts">
-import { ref } from "vue";
-import ProjectItem from "./children/ProjectItem.vue";
-const name = ref("zyh");
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+	name: "Project",
+});
 </script>

@@ -58,4 +58,11 @@ export class AppService {
 			})
 		);
 	}
+
+	// 获取审批数据
+	public getApprovalList() {
+		return NetService.request<HttpQueryResponse<any>>(
+			AppController.approvalList
+		);
+	}
 }

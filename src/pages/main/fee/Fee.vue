@@ -1,6 +1,6 @@
 <template>
-	<div class="fee">
-		<van-nav-bar title="报销" fixed placeholder z-index="9" />
+	<div class="page_content fee">
+		<zw-nav-bar hidden-left title="报销"></zw-nav-bar>
 		<van-pull-refresh
 			v-model="refreshing"
 			success-text="刷新成功"
@@ -43,6 +43,7 @@ export default defineComponent({
 		const feeList = ref<feeListItem[]>([]);
 		// 请求页码参数,页码总数
 		const pageIndex = ref(1);
+		const endSize = ref();
 		// 控制加载更多显示
 		const showMore = ref(true);
 
@@ -69,13 +70,14 @@ export default defineComponent({
 		};
 		const onLoad = () => {
 			loading.value = false;
-			showMore.value = pageIndex.value > 3 ? false : true; //3为后端返回size值
+			showMore.value = pageIndex.value >= endSize.value ? false : true;
 		};
 
 		// 获取数据
 		const getFeeList = (page: number) => {
 			console.log(page);
-			const size = 3; //3为后端返回size值
+
+			// 此处发送请求获取列表数据
 			feeList.value.push(
 				{
 					id: "0001",
@@ -94,10 +96,13 @@ export default defineComponent({
 					date: "2020-10-17",
 				}
 			);
+
+			// 请求成功执行代码
 			loading.value = false;
 			refreshing.value = false;
 			pageIndex.value++;
-			if (page > size) {
+			endSize.value = 3;
+			if (page > endSize.value) {
 				finished.value = true;
 				showMore.value = false;
 			}

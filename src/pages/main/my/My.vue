@@ -1,30 +1,46 @@
 <template>
-	<div class="page my">
-		<van-nav-bar title="我的" fixed placeholder z-index="9" />
+	<div class="page_content my">
+		<zw-nav-bar hidden-left title="我的"></zw-nav-bar>
 		<div class="my_content">
 			<div class="my_content-img">
-				<van-image round width="6rem" height="6rem" :src="headpor" />
+				<van-image round width="6rem" height="6rem" :src="avatorImg" />
 			</div>
 			<div class="my_content-name">
 				<span>您好，{{ realName }}</span>
 			</div>
 		</div>
+		<div class="logout">
+			<van-button size="large" @click="logout">退出登录</van-button>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import headpor from "@/assets/imgs/headpor.png";
-import HeadTop from "@/components/HeadTop.vue";
+import { defineComponent, computed } from "vue";
+import femaleHead from "@/assets/imgs/femalHead.png";
+import maleHead from "@/assets/imgs/maleHead.png";
+import { useStore } from "@/store";
+import { RootMutationType } from "@/types/mutation.type";
+import { useRouter } from "vue-router";
 export default defineComponent({
 	name: "MyPage",
-	// eslint-disable-next-line vue/no-unused-components
-	components: { HeadTop },
 	setup() {
-		const realName = window.sessionStorage.getItem("realName");
+		const store = useStore();
+		const router = useRouter();
+		const realName = store.state.user.realName;
+		const avatorImg = computed(() =>
+			store.state.user.gender === "1" ? maleHead : femaleHead
+		);
+		const logout = () => {
+			store.commit(RootMutationType.SET_READY, false);
+			store.commit(RootMutationType.UPDATE_USER, "");
+			router.push("/");
+			localStorage.removeItem("vuex");
+		};
 		return {
 			realName,
-			headpor,
+			avatorImg,
+			logout,
 		};
 	},
 });
