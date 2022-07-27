@@ -24,17 +24,17 @@ import { AppService } from "@/api/services/app.service";
 import { RootMutationType } from "@/types/mutation.type";
 import { Toast } from "vant";
 import { useStore } from "@/store";
-import { useRouter } from "vue-router";
+import { useRouter, addTabbarRoutes } from "@/router";
 import { ref, onBeforeMount } from "vue";
 
 const store = useStore();
 const router = useRouter();
 
-onBeforeMount(() => {
-	if (store.state.ready) {
-		router.replace("/index/report");
-	}
-});
+// onBeforeMount(() => {
+// 	if (store.state.ready) {
+// 		router.replace("/index/report");
+// 	}
+// });
 
 const userName = ref("");
 const passWord = ref("");
@@ -44,6 +44,7 @@ const login = () => {
 		next: (data) => {
 			store.commit(RootMutationType.SET_READY, true);
 			store.commit(RootMutationType.UPDATE_USER, data);
+			addTabbarRoutes(data.isAdmin);
 			router.push("/index/report");
 		},
 		error: (err) => Toast({ message: err, type: "fail" }),

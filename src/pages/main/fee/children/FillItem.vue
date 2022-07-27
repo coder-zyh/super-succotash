@@ -1,4 +1,14 @@
 <template>
+	<div class=""></div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from "vue";
+</script>
+
+<style lang="less" scoped></style>
+
+<!-- <template>
 	<div class="item">
 		<van-cell-group>
 			<van-field
@@ -49,8 +59,8 @@
 			/>
 		</van-cell-group>
 	</div>
-</template>
-<script lang="ts">
+</template> -->
+<!-- <script lang="ts">
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
@@ -115,9 +125,9 @@ export default defineComponent({
 		};
 	},
 });
-</script>
-<style scoped>
+</script> -->
+<!-- <style scoped>
 .item {
 	margin-bottom: 50px;
 }
-</style>
+</style> -->

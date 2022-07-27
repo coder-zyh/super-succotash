@@ -23,7 +23,7 @@ export default defineComponent({
 		const store = useStore();
 		const realName = store.state.user.realName;
 		const avatorImg = computed(() =>
-			store.state.user.gender === "1" ? maleHead : femaleHead
+			store.state.user.gender === "男" ? maleHead : femaleHead
 		);
 		return {
 			realName,

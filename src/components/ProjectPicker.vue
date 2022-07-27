@@ -32,10 +32,15 @@ const onCancel = () => emits("cancel");
 
 const onConfirm = (param: PickerResult) => {
 	const item = resource.value.find((x) => x.id === param.value);
-	emits("confirm", {
-		text: item.name,
-		value: item.id,
-	});
+	if (!item) {
+		emits("confirm", { text: "", value: "" });
+		console.error("数据发生错误");
+	} else {
+		emits("confirm", {
+			text: item.name,
+			value: item.id,
+		});
+	}
 };
 </script>
 

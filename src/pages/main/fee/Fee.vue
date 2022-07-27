@@ -25,14 +25,14 @@
 </template>
 <script lang="ts">
 import FeeItem from "./children/FeeItem.vue";
-import { defineComponent, ref } from "vue";
+import { defineComponent, Ref, ref } from "vue";
 
 export default defineComponent({
 	name: "Fee",
 	components: { FeeItem },
 	setup() {
 		// 数据
-		const feeList = ref([]);
+		const feeList = ref<any[]>([]);
 		// 请求页码参数
 		const pageIndex = ref(1);
 		// 控制下拉刷新
@@ -59,7 +59,7 @@ export default defineComponent({
 		};
 
 		// 获取数据
-		const getData = (pageIndex) => {
+		const getData = (pageIndex: Ref<number>) => {
 			console.log("get------------------");
 			console.log(pageIndex.value);
 			// 异步更新数据
@@ -117,9 +117,9 @@ export default defineComponent({
 			onRefresh,
 		};
 	},
-	created() {
-		this.onLoad(this.pageIndex);
-	},
+	// created() {
+	// 	this.onLoad(this.pageIndex);
+	// },
 });
 </script>
 <style scoped>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<div class="feeItem">
 		<van-cell-group v-if="item" inset>
 			<van-cell :value="item.name" />
@@ -23,4 +23,14 @@ export default defineComponent({
 .feeItem {
 	padding: 10px 0;
 }
-</style>
+</style> -->
+
+<template>
+	<div class=""></div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from "vue";
+</script>
+
+<style lang="less" scoped></style>

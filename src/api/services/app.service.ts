@@ -24,7 +24,16 @@ export class AppService {
 				if (v.success) return true;
 				else throw v.msg;
 			}),
-			map<HttpResonseType<any>, UserInfo>((v) => v.obj)
+			map<HttpResonseType<any>, UserInfo>(({ obj }) => {
+				return {
+					realName: obj.realName,
+					username: obj.username,
+					phone: obj.ohone,
+					gender: obj.gender === "1" ? "男" : "女",
+					isAdmin: !obj.roleIds.includes("13"),
+					email: obj.email,
+				};
+			})
 		);
 	}
 

@@ -1,4 +1,14 @@
 <template>
+	<div class=""></div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from "vue";
+</script>
+
+<style lang="less" scoped></style>
+
+<!-- <template>
 	<div class="fill">
 		<head-top>
 			<template #left><span @click="cancel">取消</span></template>
@@ -16,8 +26,8 @@
 			<van-button type="danger" @click="remove">点击删除</van-button>
 		</div>
 	</div>
-</template>
-<script lang="ts">
+</template> -->
+<!-- <script lang="ts">
 import HeadTop from "@/components/HeadTop.vue";
 import FillItem from "./children/FillItem.vue";
 import { useRouter } from "vue-router";
@@ -91,8 +101,8 @@ export default defineComponent({
 		};
 	},
 });
-</script>
-<style scoped>
+</script> -->
+<!-- <style scoped>
 .fill {
 	min-height: 85vh;
 }
@@ -103,4 +113,4 @@ export default defineComponent({
 	display: flex;
 	justify-content: space-around;
 }
-</style>
+</style> -->

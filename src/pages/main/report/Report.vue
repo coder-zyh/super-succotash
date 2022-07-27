@@ -23,8 +23,10 @@
 				/>
 			</div>
 			<ReportItem
+				:id="item.id"
 				v-model:timeCount="item.timeCount"
-				v-bind="item"
+				:total-amount="item.totalAmount"
+				:name="item.name"
 				@click="onProjectEvent"
 			/>
 		</div>
@@ -100,7 +102,6 @@ export default defineComponent({
 				name: "",
 				timeCount: 8,
 				date: selectDate.value,
-				totalAmount: null,
 			});
 		};
 
@@ -179,7 +180,7 @@ export default defineComponent({
 			}
 
 			// 组合数据
-			let feeList = [];
+			let feeList: any[] = [];
 			if (feeRef.value !== undefined) {
 				feeList = feeRef.value.dataSet;
 			}
