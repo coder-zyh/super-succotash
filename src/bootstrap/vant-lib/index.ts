@@ -31,6 +31,8 @@ import {
 	Dialog,
 	PullRefresh,
 	Notify,
+	Checkbox,
+	CheckboxGroup,
 } from "vant";
 
 /**
@@ -67,6 +69,8 @@ const vantLib = {
 		Vue.component(PullRefresh.name, PullRefresh);
 		Vue.component(Dialog.name, Dialog);
 		Vue.component(Notify.name, Notify);
+		Vue.component(Checkbox.name, Checkbox);
+		Vue.component(CheckboxGroup.name, CheckboxGroup);
 	},
 };
 export default vantLib;
