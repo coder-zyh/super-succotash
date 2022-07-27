@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { userTabbar, adminTabbar } from "./tabbar.routes";
+import { tabbarGuard } from "./tabbar.routes";
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -23,14 +23,21 @@ const router = createRouter({
 	routes,
 });
 
+const dynamicRouteSetting = {
+	tabberBar: false,
+};
+
 export default router;
+
+router.beforeEach((to) => {
+	// tabbar 守卫
+	if (!dynamicRouteSetting.tabberBar) {
+		const path = tabbarGuard(to);
+		dynamicRouteSetting.tabberBar = !!path;
+		return path;
+	}
+});
 
 export function useRouter() {
 	return router;
-}
-
-/** 添加首页路由 */
-export function addTabbarRoutes(isAdmin: boolean) {
-	const routes = isAdmin ? adminTabbar : userTabbar;
-	routes.forEach((route) => router.addRoute("index", route));
 }

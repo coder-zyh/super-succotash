@@ -1,7 +1,9 @@
-import { RouteRecordRaw } from "vue-router";
+import { store } from "@/store";
+import { RouteLocationNormalized, RouteRecordRaw } from "vue-router";
+import router from ".";
 
 /** 用户路由 */
-export const userTabbar: RouteRecordRaw[] = [
+const userTabbar: RouteRecordRaw[] = [
 	{
 		path: "report",
 		name: "report",
@@ -21,7 +23,7 @@ export const userTabbar: RouteRecordRaw[] = [
 ];
 
 /** 管理员路由 */
-export const adminTabbar: RouteRecordRaw[] = [
+const adminTabbar: RouteRecordRaw[] = [
 	{
 		path: "report",
 		name: "report",
@@ -71,3 +73,12 @@ export const adminTabbar: RouteRecordRaw[] = [
 		},
 	},
 ];
+
+/** 添加首页路由 */
+export function tabbarGuard(to: RouteLocationNormalized) {
+	if (to.path.includes("/index/") && store.state.ready) {
+		const routes = store.state.user.isAdmin ? adminTabbar : userTabbar;
+		routes.forEach((route) => router.addRoute("index", route));
+		return to.path;
+	}
+}
