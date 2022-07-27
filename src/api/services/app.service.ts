@@ -1,3 +1,4 @@
+import { ApprovalItem } from "@/types/approval.interface";
 import { ExpenseTypeInfo, MyteProjectInfo } from "@/types/project.interface";
 import { UserInfo } from "@/types/user.interface";
 import NetService from "@/utils/net.service";
@@ -24,7 +25,16 @@ export class AppService {
 				if (v.success) return true;
 				else throw v.msg;
 			}),
-			map<HttpResonseType<any>, UserInfo>((v) => v.obj)
+			map<HttpResonseType<any>, UserInfo>(({ obj }) => {
+				return {
+					realName: obj.realName,
+					username: obj.username,
+					phone: obj.ohone,
+					gender: obj.gender === "1" ? "男" : "女",
+					isAdmin: !obj.roleIds.includes("13"),
+					email: obj.email,
+				};
+			})
 		);
 	}
 
@@ -59,10 +69,16 @@ export class AppService {
 		);
 	}
 
-	// 获取审批数据
-	public getApprovalList() {
-		return NetService.request<HttpQueryResponse<any>>(
-			AppController.approvalList
+	/** 获取已审批数据 */
+	public getApproval() {
+		return NetService.request<HttpResonseType<any>>(
+			AppController.approval
+		).pipe(
+			filter((v) => {
+				if (v.success) return true;
+				else throw v.msg;
+			}),
+			map<HttpResonseType<any>, ApprovalItem[]>((v) => v.obj)
 		);
 	}
 }

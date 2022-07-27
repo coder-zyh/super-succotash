@@ -52,7 +52,7 @@ export class FilterService {
 	 * 千分位转换
 	 * @param value
 	 */
-	toThousands(value, fixed = 2): string {
+	toThousands(value: string | number, fixed = 2): string {
 		let num: any = "";
 		if (value === null || value === "") {
 			num = value;

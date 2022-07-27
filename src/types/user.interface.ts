@@ -4,5 +4,6 @@ export interface UserInfo {
 	phone: string;
 	username: string;
 	email: string;
-	gender?: "0" | "1";
+	gender: "男" | "女";
+	isAdmin: boolean;
 }

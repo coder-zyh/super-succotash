@@ -9,13 +9,23 @@
 			<van-tabbar-item replace to="/index/report" icon="home-o">
 				报工
 			</van-tabbar-item>
-			<van-tabbar-item replace to="/index/fee" icon="failure">
+			<van-tabbar-item v-if="isAdmin" replace to="/index/fee" icon="failure">
 				报销
 			</van-tabbar-item>
-			<van-tabbar-item replace to="/index/approval" icon="tosend">
+			<van-tabbar-item
+				v-if="isAdmin"
+				replace
+				to="/index/approval"
+				icon="tosend"
+			>
 				审批
 			</van-tabbar-item>
-			<van-tabbar-item replace to="/index/project" icon="friends-o">
+			<van-tabbar-item
+				v-if="isAdmin"
+				replace
+				to="/index/project"
+				icon="friends-o"
+			>
 				项目
 			</van-tabbar-item>
 			<van-tabbar-item replace to="/index/my" icon="user-o">
@@ -25,23 +35,11 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-export default defineComponent({
-	name: "Index",
-	setup() {
-		const arr = [
-			"project1-001016",
-			"project2-001017",
-			"project3-001018",
-			"project4-001015",
-			"project5-001019",
-			"project6-001012",
-		];
-		localStorage.setItem("projectList", JSON.stringify(arr));
-		localStorage.removeItem("projectList");
-	},
-});
+<script lang="ts" setup>
+import { useStore } from "@/store";
+import { computed } from "vue";
+const store = useStore();
+const isAdmin = computed(() => store.state.user.isAdmin);
 </script>
 <style lang="less" scoped>
 .page.index {

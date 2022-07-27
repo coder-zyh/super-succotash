@@ -57,10 +57,12 @@ import { Toast } from "vant";
 import { AppService } from "@/api/services/app.service";
 import DeleteButton from "./DeleteButton.vue";
 
-const typeList = ref([]);
+const typeList = ref<PickerResult[]>([]);
 
 new AppService().getExpenseType().subscribe({
 	next: (data) => {
+		console.log(data);
+
 		typeList.value = data.map((x) => ({
 			text: x.name,
 			value: x.id,

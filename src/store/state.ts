@@ -9,5 +9,7 @@ export const rootState: RootState = {
 		phone: "",
 		email: "",
 		realName: "",
+		gender: "男",
+		isAdmin: false,
 	},
 };

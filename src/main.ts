@@ -1,12 +1,12 @@
-import { createApp } from "vue";
-import App from "./app";
+import { createApp, h } from "vue";
 import router from "./router";
 import { boot } from "./bootstrap";
 import { store, key } from "./store";
 import "@/assets/styles/index.less";
+import { RouterView } from "vue-router";
 
 // 创建Vue实例
-const app = createApp(App);
+const app = createApp(h(RouterView));
 
 boot(app);
 

@@ -16,8 +16,8 @@ export const AppController: {
 	expensetype: IRequestServerConfig;
 	/** 填报工时  */
 	saveDayReport: IRequestServerConfig;
-	/**	获取审批数据zyh */
-	approvalList: IRequestServerConfig;
+	/**	获取已审批数据*/
+	approval: IRequestServerConfig;
 } = {
 	login: {
 		service,
@@ -47,10 +47,10 @@ export const AppController: {
 		action: "mobileSave",
 		type: RequestMethod.Post,
 	},
-	approvalList: {
+	approval: {
 		service,
 		controller,
-		path: "/myte_war/api/timesheet/expense/expensetype/list",
+		path: "/myte_war/api/mobile/getApproval?status=1",
 		action: "list",
 		type: RequestMethod.Get,
 	},
