@@ -1,6 +1,6 @@
 <template>
 	<div class="page report">
-		<!-- 时间选择器 -->
+		<van-nav-bar title="标题" fixed placeholder z-index="9" />
 		<ReportDate
 			:date="selectDate"
 			@update:date="onDateChange"

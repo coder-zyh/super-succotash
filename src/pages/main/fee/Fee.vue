@@ -11,32 +11,52 @@
 				:finished="finished"
 				finished-text="没有更多了"
 				:immediate-check="false"
-				class="load"
-				offset="-140"
 				@load="onLoad"
 			>
-				<fee-item v-for="item in feeList" :key="item" :item="item" />
+				<fee-item v-for="item in feeList" :key="item.code" :item="item" />
+				<div v-if="showMore" @click="loadMore">
+					<van-divider>点击加载更多</van-divider>
+				</div>
+				<div v-else>
+					<van-divider>无更多数据</van-divider>
+				</div>
 			</van-list>
 		</van-pull-refresh>
-		<van-button type="primary" round size="large" class="btn" to="/fill">
-			报销填报
-		</van-button>
+
+		<div class="fee_bottom">
+			<van-button type="primary" round block @click="fillForm">
+				报销填报
+			</van-button>
+		</div>
 	</div>
 </template>
 <script lang="ts">
-import FeeItem from "./children/FeeItem.vue";
-import { defineComponent, Ref, ref } from "vue";
+import FeeItem from "./components/FeeItem.vue";
+import { feeListItem } from "@/types/project.interface";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
 	name: "Fee",
 	components: { FeeItem },
 	setup() {
-		// 数据
-		const feeList = ref<any[]>([]);
-		// 请求页码参数
+		// 费用列表
+		const feeList = ref<feeListItem[]>([]);
+		// 请求页码参数,页码总数
 		const pageIndex = ref(1);
-		// 控制下拉刷新
+		const endSize = ref();
+		// 控制加载更多显示
+		const showMore = ref(true);
+
+		const loading = ref(false);
+		const finished = ref(false);
 		const refreshing = ref(false);
+
+		//点击加载更多
+		const loadMore = () => {
+			loading.value = true;
+			getFeeList(pageIndex.value);
+		};
+		//下拉刷新
 		const onRefresh = () => {
 			// 刷新清空页面;
 			feeList.value = [];
@@ -44,91 +64,76 @@ export default defineComponent({
 			pageIndex.value = 1;
 			// 未结束
 			finished.value = false;
-			// 触发加载函数
-			console.log("ref-------------------");
+			showMore.value = false;
 			onLoad();
+			getFeeList(pageIndex.value);
 		};
-		// 控制加载数据
-		const loading = ref(false);
-		const finished = ref(false);
 		const onLoad = () => {
-			// 出发请求数据函数
-			loading.value = true;
-			console.log("load------------------");
-			getData(pageIndex);
+			loading.value = false;
+			showMore.value = pageIndex.value >= endSize.value ? false : true;
 		};
 
 		// 获取数据
-		const getData = (pageIndex: Ref<number>) => {
-			console.log("get------------------");
-			console.log(pageIndex.value);
-			// 异步更新数据
-			// setTimeout 仅做示例，真实场景中一般为 ajax 请求
-			new Promise((resolve, reject) => {
-				setTimeout(() => {
-					feeList.value.push(
-						{
-							id: "0001",
-							code: "001016",
-							name: pageIndex.value,
-							date: "2020-10-16",
-							feeType: "差旅报销",
-							money: "999",
-						},
-						{
-							id: "0002",
-							code: "001017",
-							name: "Project2",
-							date: "2020-10-17",
-							feeType: "日常报销-其他",
-							money: "999",
-						}
-					);
+		const getFeeList = (page: number) => {
+			console.log(page);
 
-					resolve("success");
-				}, 1000);
-			})
-				.then((value) => {
-					console.log(value);
-					// 加载状态结束
-					loading.value = false;
-					refreshing.value = false;
-					// 数据全部加载完成
-					if (pageIndex.value > 2) {
-						// 判断条件结束加载更多
-						finished.value = true;
-					}
-					pageIndex.value++;
-				})
-				.catch((err) => {
-					throw err;
-				})
-				.finally(() => {
-					console.log("finish");
-				});
+			// 此处发送请求获取列表数据
+			feeList.value.push(
+				{
+					id: "0001",
+					code: "001016",
+					name: "Project1",
+					money: 999,
+					feeType: "差旅报销",
+					date: "2020-10-16",
+				},
+				{
+					id: "0002",
+					code: "001017",
+					money: 999,
+					feeType: "日常报销-其他",
+					name: "Project2",
+					date: "2020-10-17",
+				}
+			);
+
+			// 请求成功执行代码
+			loading.value = false;
+			refreshing.value = false;
+			pageIndex.value++;
+			endSize.value = 3;
+			if (page > endSize.value) {
+				finished.value = true;
+				showMore.value = false;
+			}
 		};
+		// 默认请求一次数据
+		getFeeList(pageIndex.value);
+		// 点击填报
+		const fillForm = () => {
+			console.log("fillForm");
+		};
+
 		return {
 			feeList,
-			refreshing,
-			getData,
+			showMore,
 			loading,
 			finished,
+			refreshing,
 			onLoad,
+			loadMore,
+			getFeeList,
 			onRefresh,
+			fillForm,
 		};
 	},
-	// created() {
-	// 	this.onLoad(this.pageIndex);
-	// },
 });
 </script>
-<style scoped>
-.btn {
-	position: fixed;
-	bottom: 50px;
-}
-.load {
-	margin-bottom: 100px;
-	min-height: 85vh;
+<style scoped lang="less">
+.fee {
+	&_bottom {
+		background-color: #fff;
+		padding: 32px 16px 16px 16px;
+	}
 }
 </style>

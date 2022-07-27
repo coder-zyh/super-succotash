@@ -9,6 +9,9 @@
 				<span>您好，{{ realName }}</span>
 			</div>
 		</div>
+		<div class="logout">
+			<van-button size="large" @click="logout">退出登录</van-button>
+		</div>
 	</div>
 </template>
 
@@ -17,17 +20,27 @@ import { defineComponent, computed } from "vue";
 import femaleHead from "@/assets/imgs/femalHead.png";
 import maleHead from "@/assets/imgs/maleHead.png";
 import { useStore } from "@/store";
+import { RootMutationType } from "@/types/mutation.type";
+import { useRouter } from "vue-router";
 export default defineComponent({
 	name: "MyPage",
 	setup() {
 		const store = useStore();
+		const router = useRouter();
 		const realName = store.state.user.realName;
 		const avatorImg = computed(() =>
 			store.state.user.gender === "男" ? maleHead : femaleHead
 		);
+		const logout = () => {
+			store.commit(RootMutationType.SET_READY, false);
+			store.commit(RootMutationType.UPDATE_USER, "");
+			router.push("/");
+			localStorage.removeItem("vuex");
+		};
 		return {
 			realName,
 			avatorImg,
+			logout,
 		};
 	},
 });

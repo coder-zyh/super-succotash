@@ -1,6 +1,7 @@
 import { IRequestServerConfig } from "@gopowerteam/http-request";
 import axios from "axios";
 import { Observable, Observer } from "rxjs";
+import { Toast } from "vant";
 
 export default class NetService {
 	static readonly axiosInstance = axios.create({
@@ -48,7 +49,9 @@ export default class NetService {
 				}
 			})
 			.catch(() => {
-				observer.error("服务请求失败，请检查网络");
+				const errMsg = "服务请求失败，请检查网络";
+				Toast({ message: errMsg });
+				observer.error(errMsg);
 			});
 
 		return observable;

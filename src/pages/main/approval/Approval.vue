@@ -4,14 +4,17 @@
 			<van-tab title="待审批">
 				<ApprovalAwait />
 			</van-tab>
-			<van-tab title="已审批">内容 2</van-tab>
+			<van-tab title="已审批">
+				<ApprovalComplete />
+			</van-tab>
 		</van-tabs>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import ApprovalAwait from "./ApprovalAwait.vue";
+import ApprovalComplete from "./ApprovalComplete.vue";
 
 const active = ref(0);
 </script>

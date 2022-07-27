@@ -5,7 +5,6 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import HeadTop from "@/components/HeadTop.vue";
 
 export default defineComponent({
 	name: "Project",
