@@ -1,4 +1,4 @@
-import { IRequestServerConfig } from "@gopowerteam/http-request";
+import { IRequestServerConfig, RequestMethod } from "@gopowerteam/http-request";
 import axios from "axios";
 import { Observable, Observer } from "rxjs";
 import { Toast } from "vant";
@@ -39,8 +39,8 @@ export default class NetService {
 			.request({
 				url,
 				method: server.type.toString(),
-				data,
-				params: data,
+				data: server.type !== RequestMethod.Get ? data : null,
+				params: server.type === RequestMethod.Get ? data : null,
 			})
 			.then((res) => {
 				if (res.status === 200) {

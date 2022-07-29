@@ -15,7 +15,7 @@
 				<van-checkbox v-if="multiple" :name="item.code"></van-checkbox>
 				<ApprovalAwaitItem
 					:multiple="multiple"
-					:un-approval-list="item"
+					:item="item"
 					@agree="agree"
 					@refuse="refuse"
 				/>
@@ -38,6 +38,7 @@ import ApprovalMultipleTitle from "./components/ApprovalMultipleTitle.vue";
 import ApprovalMultipleOperator from "./components/ApprovalMultipleOperator.vue";
 import { AppService } from "@/api/services/app.service";
 import { ApprovalItemInfo } from "@/types/approval.interface";
+import { FilterService } from "@/utils/filter.service";
 
 const multiple = ref(false);
 const checkedAll = computed(
@@ -63,47 +64,110 @@ const onCheckedAllChange = (val: boolean) => {
 		// checkedIds.value = [...unApprovalList.value];
 	}
 };
+
+// 测试数据const list = [
+// 	{
+// 		userName: "陈鹏杰123",
+// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
+// 		projectName: "公司演示及生产服务器维护",
+// 		code: "397",
+// 		day: 4,
+// 		amount: 767,
+// 		fromDate: 1656604800000,
+// 		approvalDate: 1659067034000,
+// 	},
+// 	{
+// 		userName: "陈鹏杰123",
+// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
+// 		projectName: "公司演示及生产服务器维护",
+// 		code: "398",
+// 		day: 4,
+// 		amount: 545,
+// 		fromDate: 1656604800000,
+// 		approvalDate: 1659067034000,
+// 	},
+// 	{
+// 		userName: "陈鹏杰123",
+// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
+// 		projectName: "公司演示及生产服务器维护",
+// 		code: "399",
+// 		day: 4,
+// 		amount: 455,
+// 		fromDate: 1656604800000,
+// 		approvalDate: 1659067034000,
+// 	},
+// 	{
+// 		userName: "陈鹏杰123",
+// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
+// 		projectName: "公司演示及生产服务器维护",
+// 		code: "400",
+// 		day: 4,
+// 		amount: 898,
+// 		fromDate: 1656604800000,
+// 		approvalDate: 1659067034000,
+// 	},
+// ];
 // 请求未审批数据
 const unApprovalList = ref<ApprovalItemInfo[]>([]);
 new AppService()
-	.getApproval({ status: 2, startIndex: 1, pageSize: 0 })
+	.getApproval({ status: 2, startIndex: 0, pageSize: 0 })
 	.subscribe({
 		next: (data) => {
-			console.log(data);
-
 			unApprovalList.value = data.rows;
+			// unApprovalList.value = list;
 		},
 	});
-/**	提交审批 */
-const agree = () => {
-	console.log("agree");
+/**	提交单独审批 */
+const agree = (code: string) => {
+	console.log("agree", code);
 	// 拼接同意审批列表
+	// 筛选点击审批项目
+	const [agreeItem] = unApprovalList.value.filter((item, index) => {
+		return item.code === code;
+	});
+	const peroId = new FilterService().dateFormat(agreeItem.fromDate);
 
-	const applies = [
-		{
-			peroId: "2022-08-23",
-			code: 397,
-		},
-	];
-	new AppService().submitApproval({ status: 1, applies }).subscribe({
+	const obj = {
+		status: 1, //--1 同意申请 2 拒绝申请
+		applies: [
+			{
+				// -- 审批列表集合
+				peroId, // --提交审批的时间
+				code: agreeItem.code, //--项目code
+				userId: agreeItem.userId, //用户id
+			},
+		],
+	};
+	new AppService().submitApproval(obj).subscribe({
 		next: (data) => {
-			console.log(data);
+			console.log("同意提交成功");
 		},
 	});
 };
-/**	拒绝审批 */
-const refuse = () => {
-	console.log("refuse");
+/**	提交拒绝审批 */
+const refuse = (code: string) => {
 	// 拼接拒绝审批列表
-	const applies = [
-		{
-			peroId: "2022-08-23",
-			code: 397,
-		},
-	];
-	new AppService().submitApproval({ status: 2, applies }).subscribe({
+	// 筛选点击审批项目
+	const [agreeItem] = unApprovalList.value.filter((item, index) => {
+		return item.code === code;
+	});
+
+	const peroId = new FilterService().dateFormat(agreeItem.fromDate);
+
+	const obj = {
+		status: 2, //--1 同意申请 2 拒绝申请
+		applies: [
+			{
+				// -- 审批列表集合
+				peroId, // --提交审批的时间
+				code: agreeItem.code, //--项目code
+				userId: agreeItem.userId, //用户id
+			},
+		],
+	};
+	new AppService().submitApproval(obj).subscribe({
 		next: (data) => {
-			console.log(data);
+			console.log("拒绝提交成功");
 		},
 	});
 };

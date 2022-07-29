@@ -27,7 +27,7 @@ import { ApprovalItemInfo } from "@/types/approval.interface";
 import { reactive, ref, toRef } from "vue";
 import ApprovalCompleteItem from "./components/ApprovalCompleteItem.vue";
 // 请求数据
-const pageIndex = ref(1);
+const pageIndex = ref(0);
 const approvalList = ref<ApprovalItemInfo[]>([]);
 // 参数
 const param = reactive({

@@ -1,4 +1,4 @@
-import { ApprovalItemInfo, submitApproval } from "@/types/approval.interface";
+import { submitApproval } from "@/types/approval.interface";
 import { ExpenseTypeInfo, MyteProjectInfo } from "@/types/project.interface";
 import { UserInfo } from "@/types/user.interface";
 import NetService from "@/utils/net.service";
@@ -79,7 +79,6 @@ export class AppService {
 				if (v.success) return true;
 				else throw v.msg;
 			})
-			// map<HttpQueryResponse<any>, ApprovalItemInfo[]>((v) => v)
 		);
 	}
 	/**	提交审批 */
