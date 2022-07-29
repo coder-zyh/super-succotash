@@ -18,6 +18,8 @@ export const AppController: {
 	saveDayReport: IRequestServerConfig;
 	/**	获取已审批数据*/
 	approval: IRequestServerConfig;
+	/**	提交审批 */
+	submitApproval: IRequestServerConfig;
 } = {
 	login: {
 		service,
@@ -50,8 +52,15 @@ export const AppController: {
 	approval: {
 		service,
 		controller,
-		path: "/myte_war/api/mobile/getApproval?status=1",
+		path: "/myte_war/api/mobile/getApproval",
 		action: "list",
 		type: RequestMethod.Get,
+	},
+	submitApproval: {
+		service,
+		controller,
+		path: "/myte_war/api/mobile/mobileApproval",
+		action: "list",
+		type: RequestMethod.Post,
 	},
 };

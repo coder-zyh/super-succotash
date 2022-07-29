@@ -9,8 +9,10 @@
 				<span>您好，{{ realName }}</span>
 			</div>
 		</div>
-		<div class="logout">
-			<van-button size="large" @click="logout">退出登录</van-button>
+		<div class="my_logout">
+			<van-button size="large" type="danger" @click="logout">
+				退出登录
+			</van-button>
 		</div>
 	</div>
 </template>
@@ -33,9 +35,15 @@ export default defineComponent({
 		);
 		const logout = () => {
 			store.commit(RootMutationType.SET_READY, false);
-			store.commit(RootMutationType.UPDATE_USER, "");
+			store.commit(RootMutationType.UPDATE_USER, {
+				realName: "",
+				username: "",
+				phone: "",
+				gender: "",
+				isAdmin: false,
+				email: "",
+			});
 			router.push("/");
-			localStorage.removeItem("vuex");
 		};
 		return {
 			realName,
@@ -47,16 +55,21 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.my_content {
-	height: 40vh;
-	background-color: #64a1eb;
-	text-align: center;
-	color: #fff;
-	&-img {
-		padding-top: 10vh;
+.my {
+	.my_content {
+		height: 40vh;
+		background-color: #64a1eb;
+		text-align: center;
+		color: #fff;
+		&-img {
+			padding-top: 10vh;
+		}
+		&-name {
+			margin-top: 3vh;
+		}
 	}
-	&-name {
-		margin-top: 3vh;
+	.my_logout {
+		margin-top: 30vh;
 	}
 }
 </style>

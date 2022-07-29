@@ -40,6 +40,7 @@ export default class NetService {
 				url,
 				method: server.type.toString(),
 				data,
+				params: data,
 			})
 			.then((res) => {
 				if (res.status === 200) {

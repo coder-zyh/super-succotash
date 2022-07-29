@@ -1,4 +1,4 @@
-import { ApprovalItemInfo } from "@/types/approval.interface";
+import { ApprovalItemInfo, submitApproval } from "@/types/approval.interface";
 import { ExpenseTypeInfo, MyteProjectInfo } from "@/types/project.interface";
 import { UserInfo } from "@/types/user.interface";
 import NetService from "@/utils/net.service";
@@ -69,16 +69,29 @@ export class AppService {
 		);
 	}
 
-	/** 获取已审批数据 */
-	public getApproval() {
-		return NetService.request<HttpResonseType<any>>(
-			AppController.approval
+	/** 获取审批数据 */
+	public getApproval(data: object) {
+		return NetService.request<HttpQueryResponse<any>>(
+			AppController.approval,
+			data
 		).pipe(
 			filter((v) => {
 				if (v.success) return true;
 				else throw v.msg;
-			}),
-			map<HttpResonseType<any>, ApprovalItemInfo[]>((v) => v.obj)
+			})
+			// map<HttpQueryResponse<any>, ApprovalItemInfo[]>((v) => v)
+		);
+	}
+	/**	提交审批 */
+	public submitApproval(data: submitApproval) {
+		return NetService.request<HttpResonseType<any>>(
+			AppController.submitApproval,
+			data
+		).pipe(
+			filter((v) => {
+				if (v.success) return true;
+				else throw v.msg;
+			})
 		);
 	}
 }
