@@ -32,63 +32,12 @@ const approvalList = ref<ApprovalItemInfo[]>([]);
 // 参数
 const param = reactive({
 	status: 1,
-	startIndex: pageIndex,
-	pageSize: 5,
+	//后端暂时无法处理分页
+	// startIndex: pageIndex,
+	// pageSize: 100,
 });
 const total = ref(10);
-//测试数据
-// const list = [
-// 	{
-// 		userName: "陈鹏杰123",
-// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
-// 		projectName: "贷后催收系统售后运维",
-// 		code: "398",
-// 		day: 4,
-// 		amount: 300,
-// 		fromDate: 1656604800000,
-// 		approvalDate: 1659065911000,
-// 	},
-// 	{
-// 		userName: "陈鹏杰123",
-// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
-// 		projectName: "贷后催收系统售后运维",
-// 		code: "398",
-// 		day: 4,
-// 		amount: 300,
-// 		fromDate: 1656604800000,
-// 		approvalDate: 1659065911000,
-// 	},
-// 	{
-// 		userName: "陈鹏杰123",
-// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
-// 		projectName: "贷后催收系统售后运维",
-// 		code: "398",
-// 		day: 4,
-// 		amount: 300,
-// 		fromDate: 1656604800000,
-// 		approvalDate: 1659065911000,
-// 	},
-// 	{
-// 		userName: "陈鹏杰123",
-// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
-// 		projectName: "贷后催收系统售后运维",
-// 		code: "398",
-// 		day: 4,
-// 		amount: 300,
-// 		fromDate: 1656604800000,
-// 		approvalDate: 1659065911000,
-// 	},
-// 	{
-// 		userName: "陈鹏杰123",
-// 		userId: "f9c00116-5e16-4959-a298-9d0d58a886f3",
-// 		projectName: "贷后催收系统售后运维",
-// 		code: "398",
-// 		day: 4,
-// 		amount: 300,
-// 		fromDate: 1656604800000,
-// 		approvalDate: 1659065911000,
-// 	},
-// ];
+
 const getApprovalList = () => {
 	new AppService().getApproval(param).subscribe({
 		next: (data) => {

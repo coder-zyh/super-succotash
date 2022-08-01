@@ -7,10 +7,14 @@ export interface ApprovalItemInfo {
 	day: number;
 	amount?: number;
 	fromDate: number;
-	approvalDate: number;
+	approvalDate?: number;
 }
 /**	提交审批请求体格式 */
 export interface submitApproval {
 	status: number;
 	applies: object;
+}
+// 未审批item格式
+export interface AwaitApprovalItemInfo extends ApprovalItemInfo {
+	id: string;
 }

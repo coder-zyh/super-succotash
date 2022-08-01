@@ -6,14 +6,14 @@
 		<div>
 			<van-button
 				class="operator_button operator_button-refuse"
-				@click="$emit('refuse')"
+				@click="$emit('submitMultiple', 2)"
 			>
 				拒绝
 			</van-button>
 			<van-button
 				class="operator_button operator_button-agree"
 				type="primary"
-				@click="$emit('agree')"
+				@click="$emit('submitMultiple', 1)"
 			>
 				同意
 			</van-button>
@@ -33,7 +33,7 @@ const checkBoxModel = computed({
 	set: (val) => emits("change", val),
 });
 
-const emits = defineEmits(["refuse", "agree", "change"]);
+const emits = defineEmits(["submitMultiple", "change"]);
 </script>
 
 <style lang="less" scoped>

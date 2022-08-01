@@ -23,12 +23,12 @@
 			<div
 				class="flex-span-3 approval-item_footer__button approval-item_footer__button-refuse"
 			>
-				<van-button type="primary" plain @click="$emit('refuse', item.code)">
+				<van-button type="primary" plain @click="$emit('submit', 2, item.id)">
 					拒绝
 				</van-button>
 			</div>
 			<div class="flex-span-3 approval-item_footer__button">
-				<van-button type="primary" plain @click="$emit('agree', item.code)">
+				<van-button type="primary" plain @click="$emit('submit', 1, item.id)">
 					同意
 				</van-button>
 			</div>
@@ -41,7 +41,7 @@
 import { FilterService } from "@/utils/filter.service";
 import { ref } from "vue";
 
-defineEmits(["refuse", "agree"]);
+defineEmits(["submit"]);
 
 const props = defineProps({
 	multiple: Boolean,
