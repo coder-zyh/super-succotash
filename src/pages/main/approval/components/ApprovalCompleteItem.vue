@@ -1,21 +1,21 @@
 <template>
-	<div class="component approval-item">
-		<div class="approval-item_content">
-			<div class="approval-item_title">{{ title }}</div>
-			<div class="approval-item_info">
-				<span class="approval-item_info__label">项目名称：</span>
+	<div class="component approval-complete-item">
+		<div class="approval-complete-item_content">
+			<div class="approval-complete-item_title">{{ title }}</div>
+			<div class="approval-complete-item_info">
+				<span class="approval-complete-item_info__label">项目名称：</span>
 				{{ value.projectName }}
 			</div>
-			<div class="approval-item_info">
-				<span class="approval-item_info__label">工时：</span>
+			<div class="approval-complete-item_info">
+				<span class="approval-complete-item_info__label">工时：</span>
 				{{ value.day }}
 			</div>
-			<div class="approval-item_info">
-				<span class="approval-item_info__label">预估费用：</span>
+			<div class="approval-complete-item_info">
+				<span class="approval-complete-item_info__label">预估费用：</span>
 				{{ value.amount ? 99 : 0 }}
 			</div>
-			<div class="approval-item_info">
-				<span class="approval-item_info__label">审批时间：</span>
+			<div class="approval-complete-item_info">
+				<span class="approval-complete-item_info__label">审批时间：</span>
 				{{ approval }}
 			</div>
 		</div>
@@ -45,8 +45,8 @@ const title = computed(() => {
 const approval = new FilterService().dateFormat(value.value.approvalDate);
 </script>
 <style lang="less" scoped>
-.component.approval-item {
-	.approval-item {
+.component.approval-complete-item {
+	.approval-complete-item {
 		&_content {
 			font-size: 14px;
 			padding: 8px 12px;
@@ -61,26 +61,6 @@ const approval = new FilterService().dateFormat(value.value.approvalDate);
 				color: #999;
 				display: inline-block;
 				width: 70px;
-			}
-		}
-
-		&_footer {
-			&__date {
-				padding-left: 12px;
-				color: #ccc;
-				text-align: left;
-				font-size: 13px;
-				height: 26px;
-				line-height: 26px;
-			}
-			&__button {
-				.van-button {
-					border: none;
-					height: 38px;
-				}
-			}
-			&__button-refuse {
-				text-align: right;
 			}
 		}
 	}

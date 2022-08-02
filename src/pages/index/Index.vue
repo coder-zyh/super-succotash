@@ -9,9 +9,9 @@
 			<van-tabbar-item replace to="/index/report" icon="home-o">
 				报工
 			</van-tabbar-item>
-			<van-tabbar-item v-if="isAdmin" replace to="/index/fee" icon="failure">
+			<!-- <van-tabbar-item v-if="isAdmin" replace to="/index/fee" icon="failure">
 				报销
-			</van-tabbar-item>
+			</van-tabbar-item> -->
 			<van-tabbar-item
 				v-if="isAdmin"
 				replace
