@@ -1,5 +1,6 @@
 import { DictData } from "@/types/dict.interface";
 import { UserInfo } from "@/types/user.interface";
+import { type } from "os";
 
 export type RootState = {
 	/**
@@ -13,3 +14,9 @@ export type RootState = {
 
 	user: UserInfo;
 };
+/**
+ * 审批类型
+ * @value	1:已审批
+ * @value	2:未审批
+ */
+export type ApprovalStatus = 1 | 2;

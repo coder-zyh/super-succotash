@@ -9,11 +9,15 @@
 		<van-checkbox-group v-model="checkedIds">
 			<div
 				v-for="item of unApprovalList"
-				:key="item.code"
+				:key="item.id"
 				class="approval-item-container"
 			>
 				<van-checkbox v-if="multiple" :name="item.id"></van-checkbox>
-				<ApprovalAwaitItem :multiple="multiple" :item="item" @submit="submit" />
+				<ApprovalAwaitItem
+					:multiple="multiple"
+					:item="item"
+					@submit="onSubmit"
+				/>
 			</div>
 		</van-checkbox-group>
 
@@ -22,19 +26,20 @@
 			v-if="multiple"
 			:checked-all="checkedAll"
 			@change="onCheckedAllChange"
-			@submit-multiple="submitMultiple"
+			@submit-multiple="onSubmitMultiple"
 		></ApprovalMultipleOperator>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref, computed, onBeforeMount } from "vue";
 import ApprovalAwaitItem from "./components/ApprovalAwaitItem.vue";
 import ApprovalMultipleTitle from "./components/ApprovalMultipleTitle.vue";
 import ApprovalMultipleOperator from "./components/ApprovalMultipleOperator.vue";
 import { AppService } from "@/api/services/app.service";
 import { AwaitApprovalItemInfo } from "@/types/approval.interface";
 import { FilterService } from "@/utils/filter.service";
+import { ApprovalStatus } from "@/types/state.type";
 
 const multiple = ref(false);
 const checkedAll = computed(
@@ -53,10 +58,7 @@ const onCheckedAllChange = (val: boolean) => {
 	if (!val) {
 		checkedIds.value = [];
 	} else {
-		unApprovalList.value.forEach((item) => {
-			checkedIds.value.push(item.id);
-		});
-		// checkedIds.value = [...unApprovalList.value];
+		checkedIds.value = unApprovalList.value.map((x) => x.id);
 	}
 };
 // 请求未审批数据
@@ -70,18 +72,21 @@ const getUnApprovalList = () => {
 			next: (data) => {
 				unApprovalList.value = data.rows.map((item) => {
 					const { userId, code, fromDate } = item;
-					const tempList: AwaitApprovalItemInfo = {
+					const tempObj: AwaitApprovalItemInfo = {
 						...item,
 						id: `${userId}${code}${fromDate}`,
 					};
-					return tempList;
+					return tempObj;
 				});
 			},
 		});
 };
-getUnApprovalList();
+// 挂载前调用请求
+onBeforeMount(() => {
+	getUnApprovalList();
+});
 // 发送提交请求
-const commit = (status: 1 | 2, list: Array<AwaitApprovalItemInfo>) => {
+const commit = (status: ApprovalStatus, list: AwaitApprovalItemInfo[]) => {
 	const applies = list.map((item) => {
 		const { code, userId, fromDate } = item;
 		const peroId = new FilterService().dateFormat(fromDate);
@@ -107,21 +112,23 @@ const commit = (status: 1 | 2, list: Array<AwaitApprovalItemInfo>) => {
 	});
 };
 /**	提交单个审批 */
-const submit = (status: 1 | 2, id: string) => {
-	const list = unApprovalList.value.filter((item) => {
+const onSubmit = (status: ApprovalStatus, id: string) => {
+	const list = unApprovalList.value.find((item) => {
 		return item.id === id;
 	});
-
-	commit(status, list);
+	if (list) {
+		commit(status, [list]);
+	}
 };
 /**	提交多个审批 */
-const submitMultiple = (status: 1 | 2) => {
-	const agreeList = unApprovalList.value.filter((item) => {
+const onSubmitMultiple = (status: ApprovalStatus) => {
+	if (!checkedIds.value.length) return;
+	const List = unApprovalList.value.filter((item) => {
 		const flag = checkedIds.value.indexOf(item.id);
 		return flag >= 0;
 	});
 
-	commit(status, agreeList);
+	commit(status, List);
 };
 </script>
 

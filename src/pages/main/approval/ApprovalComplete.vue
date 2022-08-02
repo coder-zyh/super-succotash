@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import { AppService } from "@/api/services/app.service";
 import { ApprovalItemInfo } from "@/types/approval.interface";
-import { reactive, ref, toRef } from "vue";
+import { onBeforeMount, reactive, ref } from "vue";
 import ApprovalCompleteItem from "./components/ApprovalCompleteItem.vue";
 // 请求数据
 const pageIndex = ref(0);
@@ -43,19 +43,19 @@ const getApprovalList = () => {
 		next: (data) => {
 			approvalList.value.push(...data.rows);
 			// 后端返回列表长度
-			data.total ? (total.value = data.total) : 0;
-			// total.value = 10;
-			// approvalList.value.push(...list);
+			total.value = data.total ?? 0;
 			// 加载结束
 			loading.value = false;
 			refreshing.value = false;
 
-			pageIndex.value++;
+			// pageIndex.value++;
 		},
 	});
 };
 // 默认加载一次;
-getApprovalList();
+onBeforeMount(() => {
+	getApprovalList();
+});
 // 下拉刷新
 const refreshing = ref(false);
 const onRefresh = () => {

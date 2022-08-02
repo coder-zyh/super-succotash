@@ -68,3 +68,10 @@ export interface feeListItem {
 	/** 报销日期 */
 	date: string;
 }
+/** 项目信息 */
+export interface ProjectItemInfo {
+	id: number;
+	status: number;
+	name: string;
+	createdate: string;
+}

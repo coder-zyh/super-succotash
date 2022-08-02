@@ -1,5 +1,5 @@
 <template>
-	<div v-show="isShow" class="component approval-item">
+	<div class="component approval-item">
 		<div class="approval-item_content">
 			<div class="approval-item_title">{{ item.userName }}</div>
 			<div class="approval-item_info">
@@ -39,7 +39,6 @@
 
 <script lang="ts" setup>
 import { FilterService } from "@/utils/filter.service";
-import { ref } from "vue";
 
 defineEmits(["submit"]);
 
@@ -53,8 +52,6 @@ const props = defineProps({
 	},
 });
 const date = new FilterService().dateFormat(props.item.fromDate);
-
-const isShow = ref(true);
 </script>
 
 <style lang="less" scoped>
