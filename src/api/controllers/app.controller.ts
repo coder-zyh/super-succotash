@@ -20,6 +20,10 @@ export const AppController: {
 	approval: IRequestServerConfig;
 	/**	提交审批 */
 	submitApproval: IRequestServerConfig;
+	/**	获取项目试图列表 */
+	getProjectViewList: IRequestServerConfig;
+	/**	获取项目试图列表 */
+	getPullProject: IRequestServerConfig;
 } = {
 	login: {
 		service,
@@ -62,5 +66,19 @@ export const AppController: {
 		path: "/myte_war/api/mobile/mobileApproval",
 		action: "list",
 		type: RequestMethod.Post,
+	},
+	getProjectViewList: {
+		service,
+		controller,
+		path: "/myte_war/api/mobile/getItems",
+		action: "list",
+		type: RequestMethod.Get,
+	},
+	getPullProject: {
+		service,
+		controller,
+		path: "/myte_war/api/mobile/getItemsUser",
+		action: "list",
+		type: RequestMethod.Get,
 	},
 };

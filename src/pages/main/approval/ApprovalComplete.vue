@@ -83,13 +83,8 @@ const onLoad = () => {
 .tabber-pannel.approval-complete {
 	.approval-item-container {
 		margin: 10px;
-		display: flex;
 		background-color: #fff;
-		align-items: flex-start;
 		border-radius: 4px;
-		.approval-item {
-			flex: 1;
-		}
 	}
 }
 </style>

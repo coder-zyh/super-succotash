@@ -1,5 +1,10 @@
 import { submitApproval } from "@/types/approval.interface";
-import { ExpenseTypeInfo, MyteProjectInfo } from "@/types/project.interface";
+import {
+	ExpenseTypeInfo,
+	MyteProjectInfo,
+	ProjectItemInfo,
+	PullProject,
+} from "@/types/project.interface";
 import { UserInfo } from "@/types/user.interface";
 import NetService from "@/utils/net.service";
 import { filter, map } from "rxjs/operators";
@@ -91,6 +96,31 @@ export class AppService {
 				if (v.success) return true;
 				else throw v.msg;
 			})
+		);
+	}
+	/**	获取项目视图列表 */
+	public getProjectViewList(data: { code: string; peroid: string }) {
+		return NetService.request<HttpResonseType<any>>(
+			AppController.getProjectViewList,
+			data
+		).pipe(
+			filter((v) => {
+				if (v.success) return true;
+				else throw v.msg;
+			}),
+			map<HttpResonseType<any>, ProjectItemInfo[]>((v) => v.obj)
+		);
+	}
+	/**	获取项目下拉列表 */
+	public getPullProject() {
+		return NetService.request<HttpResonseType<any>>(
+			AppController.getPullProject
+		).pipe(
+			filter((v) => {
+				if (v.success) return true;
+				else throw v.msg;
+			}),
+			map<HttpResonseType<any>, PullProject[]>((v) => v.obj)
 		);
 	}
 }

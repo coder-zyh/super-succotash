@@ -1,6 +1,5 @@
 import { DictData } from "@/types/dict.interface";
 import { UserInfo } from "@/types/user.interface";
-import { type } from "os";
 
 export type RootState = {
 	/**

@@ -68,10 +68,22 @@ export interface feeListItem {
 	/** 报销日期 */
 	date: string;
 }
-/** 项目信息 */
+/** 项目页展示信息 */
 export interface ProjectItemInfo {
-	id: number;
-	status: number;
+	projectName: string; //--项目名称
+	code: string; //--项目code
+	ownerid: string; //--项目经理
+	status: number; //--状态，1：启用，0：停用
+	createdate: string; //--项目创建时间
+	budget?: number; //--项目总预算
+	amount: number; //--预估费用合计
+	totalReimbursement: number; //--总报销成本合计
+	totalCost: number; //--项目总成本
+	totalManpower: number; //--总人力成本合计
+	endDate?: string; //--项目截至时间
+}
+export interface PullProject {
+	[x: string]: any;
+	code: string;
 	name: string;
-	createdate: string;
 }
