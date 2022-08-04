@@ -58,11 +58,11 @@ const date = new FilterService().dateFormat(props.item.fromDate);
 .component.approval-await-item {
 	.approval-await-item {
 		&_content {
-			font-size: 14px;
+			font-size: 13px;
 			padding: 8px 12px;
 		}
 		&_title {
-			font-size: 18px;
+			font-size: 17px;
 			margin-bottom: 4px;
 		}
 		&_info {

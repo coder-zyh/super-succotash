@@ -69,11 +69,11 @@ const foo = value.item.status === 1 ? `${date} ~ 至今` : `${date} ~ ${endDate}
 	border-radius: 4px;
 	.project-item {
 		&_content {
-			font-size: 16px;
+			font-size: 14px;
 			padding: 8px 12px;
 		}
 		&_title {
-			font-size: 20px;
+			font-size: 18px;
 			margin-bottom: 6px;
 		}
 		&_info {
