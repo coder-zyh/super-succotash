@@ -42,7 +42,7 @@ const login = () => {
 		next: (data) => {
 			store.commit(RootMutationType.SET_READY, true);
 			store.commit(RootMutationType.UPDATE_USER, data);
-			router.push("/index/report");
+			router.replace("/index/report");
 		},
 		error: (err) => Toast({ message: err, type: "fail" }),
 	});

@@ -1,6 +1,6 @@
 <template>
 	<div class="page approval">
-		<van-tabs v-model:active="active">
+		<van-tabs v-model:active="active" color="#1989fa">
 			<van-tab title="待审批">
 				<ApprovalAwait />
 			</van-tab>
