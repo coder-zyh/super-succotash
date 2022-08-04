@@ -85,8 +85,6 @@ const foo = value.item.status === 1 ? `${date} ~ 至今` : `${date} ~ ${endDate}
 				display: inline-block;
 				width: 120px;
 			}
-			&__value {
-			}
 		}
 		&_date {
 			padding-left: 12px;
