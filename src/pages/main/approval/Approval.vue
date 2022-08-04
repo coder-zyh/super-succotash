@@ -22,6 +22,7 @@ const active = ref(0);
 <style lang="less" scoped>
 .page.approval {
 	height: calc(100vh - var(--van-tabbar-height));
+	color: #333;
 	overflow: hidden;
 	.van-tabs {
 		display: flex;

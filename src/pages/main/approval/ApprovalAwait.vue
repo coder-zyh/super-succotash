@@ -1,10 +1,13 @@
 <template>
 	<div class="tabber-pannel approval-await">
 		<ApprovalMultipleTitle
+			v-if="unApprovalList.length"
 			v-model="multiple"
 			:count="checkedIds.length"
 			@update:model-value="onMultipleChange"
 		/>
+
+		<van-empty v-else description="暂无数据" />
 
 		<van-checkbox-group v-model="checkedIds">
 			<div

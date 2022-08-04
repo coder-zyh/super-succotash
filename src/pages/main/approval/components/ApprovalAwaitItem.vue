@@ -1,39 +1,39 @@
 <template>
-	<div class="component approval-item">
-		<div class="approval-item_content">
-			<div class="approval-item_title">{{ item.userName }}</div>
-			<div class="approval-item_info">
-				<span class="approval-item_info__label">项目名称：</span>
+	<div class="component approval-await-item">
+		<div class="approval-await-item_content">
+			<div class="approval-await-item_title">{{ item.userName }}</div>
+			<div class="approval-await-item_info">
+				<span class="approval-await-item_info__label">项目名称：</span>
 				{{ item.projectName }}
 			</div>
-			<div class="approval-item_info">
-				<span class="approval-item_info__label">工时：</span>
+			<div class="approval-await-item_info">
+				<span class="approval-await-item_info__label">工时：</span>
 				{{ item.day }}
 			</div>
-			<div class="approval-item_info">
-				<span class="approval-item_info__label">预估费用：</span>
+			<div class="approval-await-item_info">
+				<span class="approval-await-item_info__label">预估费用：</span>
 				{{ item.amount }}
 			</div>
 		</div>
 		<div
 			v-if="!multiple"
-			class="approval-item_footer van-hairline--top flex align-items-center"
+			class="approval-await-item_footer van-hairline--top flex align-items-center"
 		>
-			<div class="flex-span-6 approval-item_footer__date">{{ date }}</div>
+			<div class="flex-span-6 approval-await-item_footer__date">{{ date }}</div>
 			<div
-				class="flex-span-3 approval-item_footer__button approval-item_footer__button-refuse"
+				class="flex-span-3 approval-await-item_footer__button approval-await-item_footer__button-refuse"
 			>
 				<van-button type="primary" plain @click="$emit('submit', 2, item.id)">
 					拒绝
 				</van-button>
 			</div>
-			<div class="flex-span-3 approval-item_footer__button">
+			<div class="flex-span-3 approval-await-item_footer__button">
 				<van-button type="primary" plain @click="$emit('submit', 1, item.id)">
 					同意
 				</van-button>
 			</div>
 		</div>
-		<div v-else class="approval-item_footer__date">{{ date }}</div>
+		<div v-else class="approval-await-item_footer__date">{{ date }}</div>
 	</div>
 </template>
 
@@ -55,8 +55,8 @@ const date = new FilterService().dateFormat(props.item.fromDate);
 </script>
 
 <style lang="less" scoped>
-.component.approval-item {
-	.approval-item {
+.component.approval-await-item {
+	.approval-await-item {
 		&_content {
 			font-size: 14px;
 			padding: 8px 12px;
