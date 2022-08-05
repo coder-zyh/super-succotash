@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/compare/v0.1.0...v0.2.0) (2022-08-05)
+
 ## 0.1.0 (2022-08-05)
 
 
