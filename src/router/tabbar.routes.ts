@@ -41,14 +41,6 @@ const adminTabbar: RouteRecordRaw[] = [
 	// 	},
 	// },
 	{
-		path: "fill",
-		name: "fill",
-		component: () => import("@/pages/main/fee/FeeFill.vue"),
-		meta: {
-			title: "报销",
-		},
-	},
-	{
 		path: "approval",
 		name: "approval",
 		component: () => import("@/pages/main/approval/Approval.vue"),

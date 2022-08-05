@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import femaleHead from "@/assets/imgs/femalHead.png";
+import femaleHead from "@/assets/imgs/femaleHead.png";
 import maleHead from "@/assets/imgs/maleHead.png";
 import { useStore } from "@/store";
 import { RootMutationType } from "@/types/mutation.type";
