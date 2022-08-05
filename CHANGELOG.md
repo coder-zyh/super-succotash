@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.1.0 (2022-08-05)
+
+
+### Bug Fixes
+
+* 报销页面 ([cd8114b](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/cd8114b861ffdb4d9c514d23215606a7874ac60c))
+* 登录API ([e525325](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/e525325e868be79b55c8b1ae7bf1f26bf644e969))
+* 根据登录用户身份添加路由 ([ce96e48](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/ce96e484fe28c09ed9420cc57dc4382e725d601c))
+* 合并代码 ([7481ab9](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/7481ab92aa8300702be6559ce2dd39331d527e4e))
+* 去除报销页面 ([f172c17](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/f172c17d8199156619c93dbada9825af958de1c1))
+* 删除未使用的css样式 ([e6ad1c2](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/e6ad1c2d49dd59bde49f38f42320a34ba1f1c30c))
+* 审批页面，提交多个审批功能，移除分页 ([4ac6486](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/4ac648606ba39fa9dc25fb3a09f0c2f5a031d098))
+* 使用路由守卫动态添加路由 ([eb65a3b](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/eb65a3bdd10b4f151f56ed5e3027583a217270e1))
+* 添加登出功能 ([7193821](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/71938216d8979a975104f45619f426fcd6ccccc1))
+* 添加登出功能，添加审批页面已审批列表 ([948f42e](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/948f42e37aa8bbe544f63c6aa688a7a7c8f1cec7))
+* 添加登录页面，添加vuex持久化存储 ([b0c4181](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/b0c41816111cadb4afe0c3134ec3826d10e82eeb))
+* 添加审批页面布局 ([594e65f](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/594e65f61e69aca8032009a004cd2fcee4f3dc5b))
+* 项目页面 ([22eda5f](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/22eda5f7ed9d33ecf43098a8cbab050f815c59b6))
+* 修改登出功能，修改审批页面已审批列表 ([63a9a5a](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/63a9a5a2065f3f37e12f48a08f94a5740727552b))
+* 修改日志填报，API请求封装 ([22cecb1](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/22cecb11b48fbbb442670aa95a749bc8f682c7c9))
+* 修改审批页面 ([64f498d](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/64f498d543a1fd15a897068a08608d1bbda38959))
+* 修改未审批列表，添加审批功能 ([862541c](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/862541c0c80839ca0230f6dfc6087ed32bb84c65))
+* 修改页面布局 ([617fd22](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/617fd22fd967c5fb70b39f9a562212159d77ee22))
+* 修改页面样式 ([575e564](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/575e564747867b2110e043fb0eb49194f321da38))
+* 修改report页面报销填报bug ([57d5103](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/57d5103c6a214c368c15a88168c57ec80a4a3537))
+* 重构报工页面 ([a5d6dd8](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/a5d6dd89a9af585524734cd50047bb054bfab4d2))
+* add eslint rule ([d6b82f4](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/d6b82f442febf0a3e1c0c60a51b24d5bfebd55b5))
+* change code to TS ([73c35e2](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/73c35e2834b41dd052a7a388a55ebadeb21b6e8d))
+* fee页面 ([07bc69a](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/07bc69a6b34a5827102dbd7d5962163fb6a029f0))
+* merge origin code ([6770867](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/67708671de622716cc829633ecad647617408d1c))
+* test ([7d42987](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/7d429876c56df407445028d28923685ecc387888))
+* test2 ([2041bd1](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/2041bd1733eb55839d181946e27235f638214028))
+
 ### [0.3.14](http://25.66.183.35:3000/guochangxin/pangolin-xm-web-XMGJ-h5/compare/v0.3.13...v0.3.14) (2021-07-14)
 
 
