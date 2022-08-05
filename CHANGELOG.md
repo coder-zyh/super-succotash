@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/compare/v0.3.0...v0.4.0) (2022-08-05)
+
+
+### Bug Fixes
+
+* 修改配置文件，My.vue页面 ([adb4756](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/adb47568fb6d0ca1e243dbae48e58fabfa6c73a9))
+* 修改提交未添加报销数据bug ([afa287f](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/afa287ffc4cdb4e138cd423ff0e81e5ac06b7e4a))
+
 ## [0.3.0](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/compare/v0.2.0...v0.3.0) (2022-08-05)
 
 ## [0.2.0](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/compare/v0.1.0...v0.2.0) (2022-08-05)
