@@ -185,7 +185,8 @@ export default defineComponent({
 				item.assignmentId = project.code;
 				item.day = project.timeCount;
 
-				const fees = feeList.filter((x) => x.id === project.id);
+				const fees = feeList.filter((x) => x.projectId === project.id);
+
 				if (fees.length) {
 					item.mobileCardList = fees.map((fee) => {
 						return {
