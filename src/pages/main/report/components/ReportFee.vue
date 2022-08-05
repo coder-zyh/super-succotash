@@ -1,12 +1,6 @@
 <template>
 	<div class="component report-fee flex-column">
-		<van-nav-bar
-			title="添加预估费用"
-			left-text="取消"
-			:right-text="list.length ? '保存' : ''"
-			@click-left="onCancel"
-			@click-right="onConfirm"
-		/>
+		<van-nav-bar title="添加预估费用" right-text="保存" @click-right="onSave" />
 
 		<!-- 内容list -->
 		<van-form input-align="right" class="report-fee_items flex-span-1">
@@ -61,8 +55,6 @@ const typeList = ref<PickerResult[]>([]);
 
 new AppService().getExpenseType().subscribe({
 	next: (data) => {
-		console.log(data);
-
 		typeList.value = data.map((x) => ({
 			text: x.name,
 			value: x.id,
@@ -122,19 +114,8 @@ const addNewItem = () => {
 		typeText: "",
 	});
 };
-
-// 取消费用填报
-const onCancel = () => {
-	for (let index = dataSet.value.length - 1; index >= 0; index--) {
-		const item = dataSet.value[index];
-		if (item.projectId === props.pid && !item.type && !item.amount) {
-			dataSet.value.splice(index, 1);
-		}
-	}
-	nextTick(() => emits("cancel"));
-};
 // 保存当前编辑费用
-const onConfirm = () => {
+const onSave = () => {
 	let sumAmout = 0;
 	const noError = list.value.every((x) => {
 		if (x.type === "") {

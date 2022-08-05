@@ -49,12 +49,7 @@
 		</van-popup>
 
 		<van-popup :show="showFees" position="bottom" class="report_fees">
-			<ReportFee
-				ref="feeRef"
-				:pid="porjectId"
-				@cancel="onProjectEvent('fee')"
-				@confirm="onFeeFinsh"
-			/>
+			<ReportFee ref="feeRef" :pid="porjectId" @confirm="onFeeFinsh" />
 		</van-popup>
 	</div>
 </template>
