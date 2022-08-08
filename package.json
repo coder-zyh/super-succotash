@@ -3,7 +3,7 @@
 	"version": "0.4.0",
 	"license": "UNLICENSED",
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite --host 0.0.0.0",
 		"build": "vite build",
 		"build:test": "standard-version -r patch && vite build --mode test",
 		"build:sit": "standard-version -r patch && vite build --mode sit",

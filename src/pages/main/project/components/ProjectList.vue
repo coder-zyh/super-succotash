@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { ProjectItemInfo } from "@/types/project.interface";
 import ProjectListItem from "./ProjectListItem.vue";
-import { defineEmits, ref, toRef } from "vue";
+import { ref, toRef } from "vue";
 const props = defineProps({
 	projectList: Array<ProjectItemInfo>,
 	current: Boolean,
