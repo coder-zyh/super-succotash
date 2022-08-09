@@ -24,6 +24,16 @@
 						<span>元</span>
 					</template>
 				</van-field>
+				<van-field
+					v-model="item.comment"
+					rows="2"
+					autosize
+					label="备注"
+					type="textarea"
+					maxlength="50"
+					placeholder="填写备注"
+					show-word-limit
+				/>
 			</div>
 		</van-form>
 
@@ -87,7 +97,7 @@ const onTypePicked = (param: PickerResult) => {
 	showTypePicker.value = false;
 };
 
-const emits = defineEmits(["cancel", "confirm"]);
+const emits = defineEmits(["confirm"]);
 
 // 本次填报的所有费用项
 const dataSet = ref<Array<FeeItem & { typeText: string }>>([]);
@@ -112,6 +122,7 @@ const addNewItem = () => {
 		type: "",
 		amount: "",
 		typeText: "",
+		comment: "",
 	});
 };
 // 保存当前编辑费用

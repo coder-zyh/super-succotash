@@ -4,6 +4,8 @@ type PickerResult = {
 	text: string;
 	/** 选中项的实际值 */
 	value: string;
+	/** 是否选过然后禁用第二次选择 */
+	disabled?: boolean;
 };
 
 /**

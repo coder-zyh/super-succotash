@@ -24,6 +24,8 @@ export interface FeeItem {
 	amount: string;
 	/** 所属项目 */
 	projectId: string;
+	/** 费用备注 */
+	comment: string;
 }
 
 /** Myte项目信息 */

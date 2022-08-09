@@ -194,6 +194,7 @@ export default defineComponent({
 							fromDate: selectDate.value,
 							amount: fee.amount,
 							expensetypeid: fee.type,
+							comment: fee.comment,
 						};
 					});
 				}

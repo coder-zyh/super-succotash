@@ -85,6 +85,8 @@ const onLoad = () => {
 		margin: 10px;
 		background-color: #fff;
 		border-radius: 4px;
+	}
+	.van-list {
 		min-height: 50vh;
 	}
 }

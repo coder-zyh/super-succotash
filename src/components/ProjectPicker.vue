@@ -18,7 +18,11 @@ import { computed, ref } from "vue";
 const resource = ref<MyteProjectInfo[]>([]);
 
 const columns = computed(() =>
-	resource.value.map((x) => ({ text: `${x.code}-${x.name}`, value: x.id }))
+	resource.value.map((x) => ({
+		text: `${x.code}-${x.name}`,
+		value: x.id,
+		disabled: false,
+	}))
 );
 
 new AppService().getProjectList().subscribe({
@@ -36,6 +40,7 @@ const onConfirm = (param: PickerResult) => {
 		emits("confirm", { text: "", value: "" });
 		console.error("数据发生错误");
 	} else {
+		param.disabled = true;
 		emits("confirm", {
 			text: item.name,
 			value: item.id,
