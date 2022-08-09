@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/compare/v0.4.0...v0.5.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* 警告修改 ([b269400](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/b26940077180244a7f76ebb02839a5a84d0dd06f))
+* 添加未审批刷新功能，修改已审批显示bug ([8f88eec](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/8f88eec5f0f7212c46de282b030118dd2c5d0557))
+* 增加报销填报备注，选择过项目不能重复选择 ([59579bb](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/59579bbc3111bf0cf20cad5e78ea4920d81ba510))
+
 ## [0.4.0](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/compare/v0.3.0...v0.4.0) (2022-08-05)
 
 
