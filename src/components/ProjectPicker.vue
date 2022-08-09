@@ -40,7 +40,7 @@ const onConfirm = (param: PickerResult) => {
 		emits("confirm", { text: "", value: "" });
 		console.error("数据发生错误");
 	} else {
-		param.disabled = true;
+		// param.disabled = true;暂时存在bug，不启用该功能
 		emits("confirm", {
 			text: item.name,
 			value: item.id,
