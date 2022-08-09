@@ -48,10 +48,9 @@
 </template>
 <script lang="ts" setup>
 import ProjectList from "./components/ProjectList.vue";
-import { AppService } from "@/api/services/app.service.js";
-import { onBeforeMount, ref, computed, unref } from "vue";
-import { ProjectItemInfo } from "@/types/project.interface.js";
-import type { CalendarInstance } from "vant";
+import { AppService } from "@/api/services/app.service";
+import { ProjectItemInfo } from "@/types/project.interface";
+import { onBeforeMount, ref, computed } from "vue";
 import dayjs from "dayjs";
 
 // 请求操作

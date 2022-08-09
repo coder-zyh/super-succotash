@@ -7,21 +7,23 @@
 			@update:model-value="onMultipleChange"
 		/>
 
-		<van-empty v-else description="暂无数据" />
+		<van-empty v-else :description="emptyInfo" @click="onRefresh" />
 
 		<van-checkbox-group v-model="checkedIds">
-			<div
-				v-for="item of unApprovalList"
-				:key="item.id"
-				class="approval-item-container"
-			>
-				<van-checkbox v-if="multiple" :name="item.id"></van-checkbox>
-				<ApprovalAwaitItem
-					:multiple="multiple"
-					:item="item"
-					@submit="onSubmit"
-				/>
-			</div>
+			<van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+				<div
+					v-for="item of unApprovalList"
+					:key="item.id"
+					class="approval-item-container"
+				>
+					<van-checkbox v-if="multiple" :name="item.id"></van-checkbox>
+					<ApprovalAwaitItem
+						:multiple="multiple"
+						:item="item"
+						@submit="onSubmit"
+					/>
+				</div>
+			</van-pull-refresh>
 		</van-checkbox-group>
 
 		<!-- 底部全选 -->
@@ -64,6 +66,13 @@ const onCheckedAllChange = (val: boolean) => {
 		checkedIds.value = unApprovalList.value.map((x) => x.id);
 	}
 };
+const emptyInfo = ref("暂无数据，点击屏幕刷新");
+// 下拉刷新操作
+const refreshing = ref(false);
+const onRefresh = () => {
+	emptyInfo.value = "请求数据";
+	getUnApprovalList();
+};
 // 请求未审批数据
 const unApprovalList = ref<AwaitApprovalItemInfo[]>([]);
 const getUnApprovalList = () => {
@@ -81,6 +90,8 @@ const getUnApprovalList = () => {
 					};
 					return tempObj;
 				});
+				refreshing.value = false;
+				emptyInfo.value = "暂无数据，点击屏幕刷新";
 			},
 		});
 };
@@ -130,7 +141,7 @@ const onSubmitMultiple = (status: ApprovalStatus) => {
 		const flag = checkedIds.value.indexOf(item.id);
 		return flag >= 0;
 	});
-
+	multiple.value = false;
 	commit(status, List);
 };
 </script>

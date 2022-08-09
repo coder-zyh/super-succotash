@@ -85,6 +85,7 @@ const onLoad = () => {
 		margin: 10px;
 		background-color: #fff;
 		border-radius: 4px;
+		min-height: 50vh;
 	}
 }
 </style>

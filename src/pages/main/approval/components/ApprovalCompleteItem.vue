@@ -12,7 +12,7 @@
 			</div>
 			<div class="approval-complete-item_info">
 				<span class="approval-complete-item_info__label">预估费用：</span>
-				{{ value.amount ? 99 : 0 }}
+				{{ value.amount || 0 }} 元
 			</div>
 			<div class="approval-complete-item_info">
 				<span class="approval-complete-item_info__label">审批时间：</span>
