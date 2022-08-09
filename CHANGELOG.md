@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/compare/v0.5.0...v0.6.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* 取消选择过了禁用功能 ([01733d2](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/commit/01733d2b1c6700dd997dab1365f215a3d3319b58))
+
 ## [0.5.0](http://117.36.75.166:3000/zhiwang-xian/myte-daily-h5/compare/v0.4.0...v0.5.0) (2022-08-09)
 
 
